@@ -7,6 +7,38 @@ from typing import List
 
 db = SQLAlchemy()
 
+class Sponsor(db.Model):
+    id:Mapped[int ] = mapped_column(primary_key= True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
+    cat_id: Mapped[int] = mapped_column(ForeignKey("cat.id"))
+
+    user_sponsor : Mapped["User"] = relationship(back_populates="sponsor")
+    cat :Mapped["Cat"] = relationship(back_populates="sponsor_cat")
+    payments :Mapped[List["PaymentRegistration"]]= relationship(back_populates="sponsor")
+
+    def serialize(self):
+        return{
+            "id": self.id,
+            "user_id": self.user_id,
+            "cat_id":self.cat_id
+        }
+class PaymentRegistration(db.Model):
+    id:Mapped[int ] = mapped_column(primary_key= True)
+    sponsor_id:Mapped[int] = mapped_column(ForeignKey("sponsor.id"))
+    amount: Mapped[int] = mapped_column(nullable=False)
+    date_payment: Mapped[datetime] = mapped_column(DateTime, nullable= False)
+
+    sponsor : Mapped["Sponsor"] = relationship(back_populates="payments")
+
+    def serialize(self):
+        return{
+            "id":self.id,
+            "sponsor_id": self.sponsor_id,
+            "amount" : self.amount,
+            "date_payment": self.date_payment
+        }
+       
+
 class User(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
     email: Mapped[str] = mapped_column(String(120), unique=True, nullable=False)
@@ -39,41 +71,12 @@ class Cat(db.Model):
 
     def serialize(self):
         return{
+            "id": self.id,
             "name": self.name,
-            "age": self.name,
+            "age": self.age,
             "race":self.race,
             "castration": self.castration,
             "carcter": self.carcter
         }
-class Sponsor(db.Model):
-    id:Mapped[int ] = mapped_column(primary_key= True)
-    user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
-    cat_id: Mapped[int] = mapped_column(ForeignKey("cat.id"))
 
-    user_sponsor : Mapped["User"] = relationship(back_populates="sponsor")
-    cat :Mapped["Cat"] = relationship(back_populates="sponsor_cat")
-    payments :Mapped[List["PaymentRegistration"]]= relationship(back_populates="sponsor")
-
-    def serialize(self):
-        return{
-            "id": self.id,
-            "user_id": self.user_id,
-            "cat_id":self.cat_id
-        }
     
-class PaymentRegistration(db.Model):
-    id:Mapped[int ] = mapped_column(primary_key= True)
-    sponsor_id:Mapped[int] = mapped_column(ForeignKey("sponsor.id"))
-    amount: Mapped[int] = mapped_column(nullable=False)
-    date_payment: Mapped[datetime] = mapped_column(DateTime, nullable= False)
-
-    sponsor_payment : Mapped["Sponsor"] = relationship(back_populates="payments")
-
-    def serialize(self):
-        return{
-            "id":self.id,
-            "sponsor_id": self.sponsor_id,
-            "amount" : self.amount,
-            "date_payment": self.date_payment
-        }
-       
