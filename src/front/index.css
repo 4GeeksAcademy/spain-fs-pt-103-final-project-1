@@ -1,0 +1,28 @@
+.link-pretty {
+                  color: black !important; /* color negro */
+                font-weight: 500;
+                text-decoration: none;
+                padding: 0.5rem 1rem;
+                border-radius: 0.75rem;
+                display: inline-block;
+                font-family: 'Segoe UI', sans-serif;
+                transition: all 0.3s ease;
+                position: relative;
+                }
+                .link-pretty::after {
+                  content: "";
+                position: absolute;
+                left: 0;
+                bottom: 4px;
+                width: 0%;
+                height: 2px;
+                background-color: black;
+                transition: width 0.3s ease;
+                }
+                .link-pretty:hover::after {
+                  width: 100%;
+                }
+                .link-pretty:hover {
+                  transform: scale(1.03);
+                color: black !important;
+                }
