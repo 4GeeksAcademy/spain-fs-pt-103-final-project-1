@@ -26,3 +26,7 @@
                   transform: scale(1.03);
                 color: black !important;
                 }
+
+.back {
+    background-color: rgb(218, 254, 255);
+}
