@@ -15,16 +15,7 @@ api = Blueprint('api', __name__)
 CORS(api)
 
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
-
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
-
-    return jsonify(response_body), 200
-
-@api.route('signup', methods= ['POST'])
+@api.route('/signup', methods= ['POST'])
 def create_user():
     body = request.get_json()
 
@@ -64,6 +55,7 @@ def login():
     token = create_access_token(identity=str(user.id))
 
     return jsonify({'token': token}),200
+
 @api.route('user/user-data', methods=['GET'])
 @jwt_required()
 def user_data():
@@ -86,11 +78,11 @@ def get_all_user():
 
     return jsonify(response_body),201
 
-@api. route('cat', methods = ['POST'])
+@api. route('/cat', methods = ['POST'])
 def create_cat():
     body = request.get_json()
 
-    if 'name' not in body or 'age' not in body  or  "race" not in body or  "castration" not in body or  "carcter" not in body:
+    if 'name' not in body or 'age' not in body  or  "race" not in body or  "castration" not in body or  "caracter" not in body:
         return  jsonify({'err': 'Bad request'}),400
     
     search_exist = select(Cat).where(Cat.name == body['name'])
@@ -104,7 +96,7 @@ def create_cat():
     cat.age = body['age']
     cat.race = body['race']
     cat.castration = body['castration']
-    cat.carcter = body['carcter']
+    cat.character = body['character']
     db.session.add(cat)
     db.session.commit()
 
@@ -147,6 +139,16 @@ def create_sponsor():
     
     return jsonify({'ok': "sponsor add"}),201
 
+@api.route('/sponsor', methods =['GET'])
+def get_all_sponsor():
+    all_sponsor= db.session.execute(select(Sponsor)).scalars().all()
+    all_sponsor = list(map(lambda sponsor: sponsor.serialize(), all_sponsor))   
+    
+    response_body ={
+        "Sponsor" : all_sponsor
+    }
+
+    return jsonify(response_body),201
 
 
 @api.route('/payment-registration', methods = ['POST'])
@@ -164,3 +166,49 @@ def create_payment():
     db.session.commit()
 
     return jsonify({'ok': 'Payment register'})
+
+
+@api.route('/payment-registration', methods =['GET'])
+def payment_with_sponsor():
+    all_payments= db.session.execute(select(PaymentRegistration)).scalars().all()
+   
+    results=[]
+    for payment in all_payments:
+        sponsor = payment.sponsor  
+        results.append({
+            'id': payment.id,
+            'amount': payment.amount,
+            'date_payment': str(payment.date_payment),
+            'sponsor': {
+                'id': sponsor.id,
+                'cat_id': sponsor.cat_id,
+                'user_id' : sponsor.user_id
+            }
+        })
+
+    return jsonify({"payments": results}), 200
+
+@api.route('/cat/<int:cat_id>', methods = ['DELETE'])
+def handle_delete_cat(cat_id):
+    cat = db.session.get(Cat,cat_id)
+  
+    if cat is None:
+     return jsonify({"error": "Cat not found"}), 404
+   
+    db.session.delete(cat)
+    db.session.commit()
+
+    return jsonify({"message": "Cat deleted"}), 200
+
+
+@api.route('/user/<int:user_id>', methods = ['DELETE'])
+def handle_delete_user(user_id):
+    user = db.session.get(User,user_id)
+  
+    if user is None:
+     return jsonify({"error": "User not found"}), 404
+   
+    db.session.delete(user)
+    db.session.commit()
+
+    return jsonify({"message": "User deleted"}), 200

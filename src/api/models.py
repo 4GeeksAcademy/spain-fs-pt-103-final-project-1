@@ -37,6 +37,17 @@ class PaymentRegistration(db.Model):
             "amount" : self.amount,
             "date_payment": self.date_payment
         }
+    def serialize_with_sponsor(self):
+        return {
+         'id': self.id,
+            'amount': self.amount,
+            'date_payment': str(self.date_payment),
+            'sponsor': {
+             'id': self.sponsor.id,
+             'cat_id': self.sponsor.cat_id,
+             'user_id': self.sponsor.user_id
+        }
+    }
        
 
 class User(db.Model):
@@ -65,7 +76,7 @@ class Cat(db.Model):
     age: Mapped[int] = mapped_column(nullable=False)
     race: Mapped[str] = mapped_column (String(120),nullable= False)
     castration: Mapped[bool] = mapped_column(nullable=False)
-    carcter:Mapped[str] = mapped_column (String(120),nullable= False)
+    character:Mapped[str] = mapped_column (String(120),nullable= False)
 
     sponsor_cat: Mapped[List["Sponsor"]] = relationship(back_populates="cat")
 
@@ -76,7 +87,7 @@ class Cat(db.Model):
             "age": self.age,
             "race":self.race,
             "castration": self.castration,
-            "carcter": self.carcter
+            "character": self.character
         }
 
     
