@@ -10,7 +10,7 @@ export const Navbar = () => {
 			<nav className="navbar navbar-expand navbar-light bg-ligth border  border-dark">
 				<div className="container">
 					<Link to="/">
-						<img src={logoAnimal} className="img-fluid rounded-circle" style={{ width: 90 }} alt="imagen" />
+						<img src={logoAnimal} className="img-fluid rounded-circle" style={{ width: 40 }} alt="imagen" />
 					</Link>
 					<div className="collapse navbar-collapse" id="navbarNavAltMarkup">
 						<div className="navbar-nav mx-2">
