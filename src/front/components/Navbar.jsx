@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/img/logo.jpeg";
 import styles from "../index.css"
+import { LuPawPrint } from "react-icons/lu";
 
 export const Navbar = () => {
 
@@ -15,19 +16,19 @@ export const Navbar = () => {
 					<div className="collapse navbar-collapse" id="navbarNavAltMarkup">
 						<div className="navbar-nav mx-2">
 							<a className="nav-link active mx-4 p-2 fs-5 fw-semibold link-pretty" aria-current="page" href="#">Home</a>
-							<a className="nav-link active p-2 fs-5 fw-semibold link-pretty" href="#">Quiero adoptar</a>
-							<a className="nav-link active p-2 fs-5 fw-semibold link-pretty" href="#">Quiero apadrinar</a>
+							<a className="nav-link active p-2 fs-5 fw-semibold link-pretty" href="#">Quiero adoptar <LuPawPrint /></a>
+							<a className="nav-link active p-2 fs-5 fw-semibold link-pretty" href="#">Quiero apadrinar <LuPawPrint /></a>
 						</div>
 					</div>
 					<div className="ml-auto nav-item dropdown">
 						
-							<button class="dropdown-toggle btn btn-primary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<button className="dropdown-toggle btn btn-primary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								Ingresar
 							</button>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">Iniciar sesion</a></li>
-								<li><hr class="dropdown-divider"/></li>
-								<li><a class="dropdown-item" href="#">Registrarme</a></li>
+							<ul className="dropdown-menu">
+								<li><a className="dropdown-item" href="#">Iniciar sesion</a></li>
+								<li><hr className="dropdown-divider"/></li>
+								<li><a className="dropdown-item" href="#">Registrarme</a></li>
 							</ul>
 						
 
