@@ -1,4 +1,4 @@
-.link-pretty {
+.link-footer {
                   color: black !important; /* color negro */
                 font-weight: 500;
                 text-decoration: none;
@@ -19,14 +19,12 @@
                 background-color: black;
                 transition: width 0.3s ease;
                 }
+
                 .link-pretty:hover::after {
                   width: 100%;
                 }
+
                 .link-pretty:hover {
                   transform: scale(1.03);
                 color: black !important;
                 }
-
-.back {
-    background-color: rgb(218, 254, 255);
-}
