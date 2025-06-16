@@ -6,8 +6,13 @@ from api.models import db, User, Cat, Sponsor, PaymentRegistration
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
-from sqlalchemy import select
+from sqlalchemy import select, exc
+from argon2 import PasswordHasher
+from argon2.exceptions import VerifyMismatchError
 
+
+
+ph = PasswordHasher()
 
 api = Blueprint('api', __name__)
 
@@ -19,8 +24,9 @@ CORS(api)
 def create_user():
     body = request.get_json()
 
-    if 'email' not in body or 'password' not in body:
-        return jsonify({'err':'Bad request'}),400
+    required_fields = ['email', 'password', 'name', 'lastname', 'birthdate']    
+    if not all(field in body for field in required_fields):
+        return jsonify({'err': 'Bad request, missing fields'}), 400
     
     search_exist = select(User).where(User.email == body['email'])
     alredy_exist = db.session.execute(search_exist).scalar_one_or_none()
@@ -28,35 +34,51 @@ def create_user():
     if(alredy_exist):
         return jsonify({"error": "User already exist"}),401
     
+    try:
+        hashed_password = ph.hash(body['password'])
+    except Exception as e:
+        return jsonify({'error': 'Failed to hash password'}), 500
+   
+   
+
 
     user = User()
     user.email = body['email']
-    user.password = body['password']
+    user.password = hashed_password
     user.name = body['name']
     user.lastname = body['lastname']
     user.birthdate = body['birthdate']
     db.session.add(user)
     db.session.commit()
 
-    return jsonify({'Ok': "User created"}),201
+    return jsonify({'Ok': "User created"}),200
 
 @api.route('/login', methods=['POST'])
 def login():
     body = request.get_json()
-    if 'email' not in body['email'] or 'password' not in body['password']:
-        return jsonify({'err':'Bad request'}),400
+    if 'email' not in body or 'password' not in body:
+        return jsonify({'err':'Bad request'}), 400
     
     email = body['email']
     password = body['password']
-    user = User.query.filter_by(email=email, password=password).first()
+    user = User.query.filter_by(email=email).first()
 
     if user is None:
-        return jsonify({"err": " User not exist"})
+        return jsonify({"err": " User not exist"}),404
+    
+
+    try:
+        ph.verify(user.password, password)
+    except VerifyMismatchError:
+        return jsonify({'err': 'Invalid password'}), 401
+    except Exception:
+        return jsonify({'err': 'Error verifying password'}), 500
+    
     token = create_access_token(identity=str(user.id))
 
     return jsonify({'token': token}),200
 
-@api.route('user/user-data', methods=['GET'])
+@api.route('/user/user-data', methods=['GET'])
 @jwt_required()
 def user_data():
     current_user_id= get_jwt_identity()
@@ -76,20 +98,30 @@ def get_all_user():
         "Users" : all_users
     }
 
-    return jsonify(response_body),201
+    return jsonify(response_body),200
+
+@api.route('/user/<int:user_id>', methods =['GET'])
+def get_user_for_id(user_id):
+    user = db.session.get(User, user_id)
+    if user is None:
+        return jsonify({'err': "User not found"}), 404
+    response_body={
+        "User": user.serialize()
+    }
+    return jsonify(response_body),200
 
 @api. route('/cat', methods = ['POST'])
 def create_cat():
     body = request.get_json()
 
-    if 'name' not in body or 'age' not in body  or  "race" not in body or  "castration" not in body or  "caracter" not in body:
+    if 'name' not in body or 'age' not in body  or  "race" not in body or  "castration" not in body or  "character" not in body:
         return  jsonify({'err': 'Bad request'}),400
     
     search_exist = select(Cat).where(Cat.name == body['name'])
     alredy_exist = db.session.execute(search_exist).scalar_one_or_none()
 
     if alredy_exist:
-        return jsonify({'err', 'The cat alredy exists'}), 410
+     return jsonify({'err': 'The cat already exists'}), 409
     
     cat = Cat()
     cat.name = body['name']
@@ -112,7 +144,7 @@ def get_all_cat():
         "Cats" : all_cats
     }
 
-   return jsonify(response_body),201
+   return jsonify(response_body),200
 
 @api.route('/cat/<int:cat_id>', methods =['GET'])
 def get_cat_for_id(cat_id):
@@ -122,7 +154,7 @@ def get_cat_for_id(cat_id):
     response_body={
         "Cat": cat.serialize()
     }
-    return jsonify(response_body),201
+    return jsonify(response_body),200
 
 @api.route('/sponsor', methods = ['POST'])
 def create_sponsor():
@@ -148,7 +180,7 @@ def get_all_sponsor():
         "Sponsor" : all_sponsor
     }
 
-    return jsonify(response_body),201
+    return jsonify(response_body),200
 
 
 @api.route('/payment-registration', methods = ['POST'])
@@ -195,10 +227,13 @@ def handle_delete_cat(cat_id):
     if cat is None:
      return jsonify({"error": "Cat not found"}), 404
    
-    db.session.delete(cat)
-    db.session.commit()
-
-    return jsonify({"message": "Cat deleted"}), 200
+    try:
+        db.session.delete(cat)
+        db.session.commit()
+        return jsonify({"message": "Cat deleted"}), 200
+    except exc.IntegrityError:
+        db.session.rollback()
+        return jsonify({"error": "Cannot delete Cat: it is referenced by other records"})
 
 
 @api.route('/user/<int:user_id>', methods = ['DELETE'])
@@ -207,8 +242,12 @@ def handle_delete_user(user_id):
   
     if user is None:
      return jsonify({"error": "User not found"}), 404
-   
-    db.session.delete(user)
-    db.session.commit()
+    
+    try:
+        db.session.delete(user)
+        db.session.commit()
+        return jsonify({"message": "User deleted"}),200
+    except exc.IntegrityError:
+        db.session.rollback()
+        return jsonify({"error": "cannot delete User: It`s reference by other records"})
 
-    return jsonify({"message": "User deleted"}), 200
