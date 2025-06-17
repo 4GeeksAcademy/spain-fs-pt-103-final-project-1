@@ -1,7 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import Flask, request, jsonify, url_for, Blueprint, redirect
 from api.models import db, User, Cat, Sponsor, PaymentRegistration
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
@@ -9,6 +9,9 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 from sqlalchemy import select, exc
 from argon2 import PasswordHasher
 from argon2.exceptions import VerifyMismatchError
+import stripe
+import os
+
 
 
 
@@ -250,4 +253,28 @@ def handle_delete_user(user_id):
     except exc.IntegrityError:
         db.session.rollback()
         return jsonify({"error": "cannot delete User: It`s reference by other records"})
+    
 
+stripe.api_key = 'sk_test_51RahuCFMs8PtSpw5R8ZDgpeE3cGPxARTavpjBSoP2YJJGvyYEUOEHF9J0QgrbVQHyTv9K86mZETEuKJHZODPQOuT00mb5wz0An'
+
+
+
+    
+@api.route('/create-checkout-session', methods=['POST'])
+def create_checkout_session():
+    try:
+       data = request.json
+       intent = stripe.PaymentIntent.create(
+           amount = data['amount'],
+           currency = data['currency'],
+           automatic_payment_methods={'enabled': True
+           }
+       )
+       return jsonify({
+           'clientSecret': intent['client_secret']
+       })
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400
+
+   

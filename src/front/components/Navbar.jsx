@@ -21,13 +21,13 @@ export const Navbar = () => {
 					</div>
 					<div className="ml-auto nav-item dropdown">
 						
-							<button class="dropdown-toggle btn btn-primary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<button className="dropdown-toggle btn btn-primary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								Ingresar
 							</button>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">Iniciar sesion</a></li>
-								<li><hr class="dropdown-divider"/></li>
-								<li><a class="dropdown-item" href="#">Registrarme</a></li>
+							<ul className="dropdown-menu">
+								<li><a className="dropdown-item" href="#">Iniciar sesion</a></li>
+								<li><hr className="dropdown-divider"/></li>
+								<li><a className="dropdown-item" href="#">Registrarme</a></li>
 							</ul>
 						
 
