@@ -1,7 +1,21 @@
-export const UserData =()=>{
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import useGlobalReducer from "../hooks/useGlobalReducer"
 
-    return 
-    <h1>
-        Hola soy Nael
-    </h1>
+export const UserData = () =>{
+
+  const {store}= useGlobalReducer();
+          if(!store.user){
+        return null
+    }
+    return(
+        <section>
+            <h1>
+                Bienvenido usuario:
+            </h1>
+            <h2>
+            {store.user.email}
+            </h2>
+        </section>
+    )
 }

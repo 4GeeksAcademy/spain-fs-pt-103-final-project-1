@@ -1,6 +1,7 @@
 import { useState } from "react"
 import {  useNavigate } from "react-router-dom"
 import storeReducer from "../store"
+import useGlobalReducer from "../hooks/useGlobalReducer";
 
 
 export const Login = () =>{
@@ -8,6 +9,7 @@ export const Login = () =>{
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
+    const {store,dispatch} = useGlobalReducer();
 
     const handleLogin =  async (email,password) =>{
         try{
@@ -30,8 +32,11 @@ export const Login = () =>{
 
             if(!data.token)
                 return undefined;
+            
+            
 
             localStorage.setItem('token', data.token)
+            console.log("esto es el data:" ,data)
             return data;
 
 
@@ -46,10 +51,10 @@ export const Login = () =>{
     const handleOnSubmit  =  async  (evt) => {
         evt.preventDefault();
         const response =  await handleLogin(email,password)
-        console.log(response)
+       
         
         if(response){
-           navigate('/')
+           navigate('/user-data')
         }else {
             setError('Error login')
         }

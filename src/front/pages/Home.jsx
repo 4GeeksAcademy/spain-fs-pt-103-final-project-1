@@ -21,7 +21,7 @@ export const Home = () => {
 			const data = await response.json()
 
 			if (response.ok) dispatch({ type: "set_hello", payload: data.message })
-
+			
 			return data
 
 		} catch (error) {
