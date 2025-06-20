@@ -30,6 +30,7 @@ export const PrivarteRoute  = ({children}) => {
             dispatch({
                 type: 'set_user', payload: {
                     user: user.user,
+                    token: token
                 }
             })
 

@@ -204,8 +204,12 @@ def create_payment():
 
 
 @api.route('/payment-registration', methods =['GET'])
+@jwt_required()
 def payment_with_sponsor():
-    all_payments= db.session.execute(select(PaymentRegistration)).scalars().all()
+    current_user_id= get_jwt_identity()
+    all_payments = (db.session.query(PaymentRegistration) .join(Sponsor).filter(Sponsor.user_id == int(current_user_id)).all()
+)
+   
    
     results=[]
     for payment in all_payments:

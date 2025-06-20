@@ -34,10 +34,10 @@ export default function storeReducer(store, action = {}) {
       };
 
       case 'set_user':
-        const {user} = action.payload
+        const {user,token} = action.payload
         return {
           ...store,
-          user
+          user,token
         }
           case "Logout":
           return{

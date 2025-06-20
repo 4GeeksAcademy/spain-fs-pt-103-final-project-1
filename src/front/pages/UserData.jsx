@@ -1,53 +1,49 @@
-import { useEffect } from "react"
-import { useNavigate } from "react-router-dom"
-import useGlobalReducer from "../hooks/useGlobalReducer"
+import { useEffect, useState } from "react";
+import useGlobalReducer from "../hooks/useGlobalReducer";
 
-export const UserData = () =>{
+export const UserData = () => {
+    const { store } = useGlobalReducer();
+    const [payments, setPayments] = useState([]);
 
-  const {store}= useGlobalReducer();
-          if(!store.user){
-        return null
-    }
 
-    const handleListSponsor = async () =>{
-         const { store } = useGlobalReducer();
-         const [payments, setPayments] = useState([]);
-         try {
-            const response = await fetch("https://refactored-doodle-5gr9497rp94vh754r-3001.app.github.dev/api/payment-registration");
+
+    const handleListSponsor = async () => {
+        try {
+            const response = await fetch(
+                "https://refactored-doodle-5gr9497rp94vh754r-3001.app.github.dev/api/payment-registration",{
+                 headers:{
+                    'Authorization': `Bearer ${store.token}`
+                }
+            }
+            );
             const data = await response.json();
-
+            console.log("esto es data", data.payments)
            
-            const userPayments = data.filter(payment => payment.sponsor.user_id === store.user.id);
-            setPayments(userPayments);
-            console.log(payments)
+            setPayments(data.payments);
         } catch (error) {
             console.error("Error fetching payments:", error);
         }
-    }
-      
-        
-    
+    };
 
     useEffect(() => {
+       if (store.user) {
+         console.log(store.token)
         handleListSponsor();
-    }, []);
+    }
+}, [store.user]);
 
-     return(
+    return (
         <section>
-            <h1>
-                Bienvenido usuario:
-            </h1>
-            <h2>
-            {store.user.email}
-            </h2>
-             <h3>Tus pagos:</h3>
+            <h1>Bienvenido usuario:</h1>
+           <h2>{store.user?.email || "Cargando..."}</h2>
+            <h3>Tus pagos:</h3>
             <ul>
-                {payments.map(payment => (
+                {payments.map((payment) => (
                     <li key={payment.id}>
                         Monto: {payment.amount} - Fecha: {payment.date_payment}
                     </li>
                 ))}
             </ul>
         </section>
-    )
-}
+    );
+};
