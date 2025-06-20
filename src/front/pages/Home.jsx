@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+import { Card } from "../components/Card"
 import { Card } from "../components/Card";
 import { CardTips } from "../components/CardTips";
 import  Carousel  from "../components/Carousel.jsx";
@@ -48,10 +49,6 @@ export const Home = () => {
 			<hr className="my-4"/>
 			<h1>Tips para cuidar de tu minino <MdOutlineTipsAndUpdates /></h1>
 			<Carousel cards={[<CardTips />]} />
-			
-			
-
-			
 		</div>
 	);
 }; 
