@@ -86,14 +86,20 @@ export const CheckoutForm = () => {
             <div className="my-5">
                 <CardElement />
             </div>
-            <button type="submit" disabled={!stripe || loading}>
-                Pay
+            <button 
+                type="submit"
+                className="btn btn-success mx-auto"
+                disabled={!stripe || loading}>
+                    
+                 Pay
             </button>
             {paymentSuccess && (
                 <div className="alert alert-success mt-3" role="alert">
                     Su pago ha sido procesado. Redireccionando...
                 </div>
             )}
+
+
         </form>
     );
 };

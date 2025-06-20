@@ -8,7 +8,31 @@ export const UserData = () =>{
           if(!store.user){
         return null
     }
-    return(
+
+    const handleListSponsor = async () =>{
+         const { store } = useGlobalReducer();
+         const [payments, setPayments] = useState([]);
+         try {
+            const response = await fetch("https://refactored-doodle-5gr9497rp94vh754r-3001.app.github.dev/api/payment-registration");
+            const data = await response.json();
+
+           
+            const userPayments = data.filter(payment => payment.sponsor.user_id === store.user.id);
+            setPayments(userPayments);
+            console.log(payments)
+        } catch (error) {
+            console.error("Error fetching payments:", error);
+        }
+    }
+      
+        
+    
+
+    useEffect(() => {
+        handleListSponsor();
+    }, []);
+
+     return(
         <section>
             <h1>
                 Bienvenido usuario:
@@ -16,6 +40,14 @@ export const UserData = () =>{
             <h2>
             {store.user.email}
             </h2>
+             <h3>Tus pagos:</h3>
+            <ul>
+                {payments.map(payment => (
+                    <li key={payment.id}>
+                        Monto: {payment.amount} - Fecha: {payment.date_payment}
+                    </li>
+                ))}
+            </ul>
         </section>
     )
 }

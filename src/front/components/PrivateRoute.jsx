@@ -42,6 +42,8 @@ export const PrivarteRoute  = ({children}) => {
             
         }
     }
+
+  
     
     useEffect(()=>{
         fetchUser()
@@ -49,6 +51,7 @@ export const PrivarteRoute  = ({children}) => {
  return(
     <>
     {children}
+
     </>
  )
 }
