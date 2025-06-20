@@ -2,6 +2,13 @@ import React, { useEffect } from "react"
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Card } from "../components/Card"
+import { Card } from "../components/Card";
+import { CardTips } from "../components/CardTips";
+import  Carousel  from "../components/Carousel.jsx";
+import Jumbotron from "../components/Jumbotron.jsx";
+import { GiPawHeart } from "react-icons/gi";
+import { MdOutlineTipsAndUpdates } from "react-icons/md";
+
 
 export const Home = () => {
 
@@ -35,8 +42,13 @@ export const Home = () => {
 
 	return (
 		<div className="text-center mt-5">
-			<h1 className="display-4">Hello Rigo!!</h1>
-			<Card />
+			<Jumbotron />
+			<hr className="my-4"/>
+			<h1>Conoce nuestros gatitos!<GiPawHeart /></h1>
+			<Carousel cards={[<Card />]} /> 
+			<hr className="my-4"/>
+			<h1>Tips para cuidar de tu minino <MdOutlineTipsAndUpdates /></h1>
+			<Carousel cards={[<CardTips />]} />
 		</div>
 	);
 }; 
