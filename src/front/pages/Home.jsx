@@ -2,7 +2,6 @@ import React, { useEffect } from "react"
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Card } from "../components/Card"
-import { Form } from "../components/Form"
 
 export const Home = () => {
 
@@ -39,7 +38,6 @@ export const Home = () => {
 		<div className="text-center mt-5">
 			<h1 className="display-4">Hello Rigo!!</h1>
 			<Card />
-			<Form />
 		</div>
 		</>
 	);

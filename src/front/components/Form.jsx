@@ -38,8 +38,12 @@ export const Form = () => {
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="nombreCompleto" className="form-label fw-semibold">Nombre y apellidos</label>
-                        <input type="text" className="form-control" id="nombreCompleto" placeholder="Ej. Mizifú Alvarez Ortiz" />
+                        <label htmlFor="nombreCompleto" className="form-label fw-semibold">Nombre</label>
+                        <input type="text" className="form-control" id="nombreCompleto" placeholder="Ej. Mizifú" />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="nombreCompleto" className="form-label fw-semibold">Apellidos</label>
+                        <input type="text" className="form-control" id="nombreCompleto" placeholder="Ej. Alvarez Ortiz" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="gmail" className="form-label fw-semibold">Correo Gmail</label>
@@ -85,3 +89,5 @@ export const Form = () => {
         </div>
     )
 }
+
+export default Form;
