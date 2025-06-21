@@ -32,6 +32,18 @@ export default function storeReducer(store, action = {}) {
         ...store,
         todos: store.todos.map((todo) => (todo.id === id ? { ...todo, background: color } : todo))
       };
+
+      case 'set_user':
+        const {user,token} = action.payload
+        return {
+          ...store,
+          user,token
+        }
+          case "Logout":
+          return{
+            ...store,
+            user:null,
+          }
     default:
       throw Error('Unknown action.');
   }    
