@@ -28,3 +28,8 @@
                   transform: scale(1.03);
                 color: black !important;
                 }
+
+
+.no-link {
+  text-decoration: none !important;
+}

@@ -14,8 +14,6 @@ export const Navbar = () => {
 		navigate("/")
 
 	 }
-
-
 	return (
 		<>
 			<nav className="navbar navbar-expand navbar-light bg-ligth border  border-dark">
@@ -24,10 +22,16 @@ export const Navbar = () => {
 						<img src={logoAnimal} className="img-fluid rounded-circle" style={{ width: 40 }} alt="imagen" />
 					</Link>
 					<div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-						<div className="navbar-nav mx-2">
-							<a className="nav-link active mx-4 p-2 fs-5 fw-semibold link-pretty" aria-current="page" href="#">Home</a>
-							<a className="nav-link active p-2 fs-5 fw-semibold link-pretty" href="#">Quiero adoptar <LuPawPrint /></a>
-							<a className="nav-link active p-2 fs-5 fw-semibold link-pretty" href="#">Quiero apadrinar <LuPawPrint /></a>
+					<div className="navbar-nav mx-2">
+						<Link className="no-link" to="/">
+							<span className="nav-link active mx-4 p-2 fs-5 fw-semibold link-pretty" aria-current="page" href="#">Home</span>
+						</Link>
+						<Link className="no-link" to="/adoption">
+							<span className="nav-link active p-2 fs-5 fw-semibold link-pretty" aria-current="page" href="#">Quiero adoptar <LuPawPrint /></span>
+						</Link>
+						<Link className="no-link" to="/sponsorship">
+							<span className="nav-link active p-2 fs-5 fw-semibold link-pretty" aria-current="page" href="#" >Quiero apadrinar <LuPawPrint /></span>
+						</Link>
 						</div>
 					</div>
 					<div className="ml-auto nav-item dropdown">

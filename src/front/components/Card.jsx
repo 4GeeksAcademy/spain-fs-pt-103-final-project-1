@@ -15,3 +15,4 @@ export const Card = ({catName, image}) => {
         </div>
     )
 }
+export default Card;
