@@ -3,12 +3,14 @@ import { FaInstagram } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 
+
 export const Form = () => {
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
     const [lastname, setLastname] = useState('')
     const [date, setDate] = useState('')
     const [email, setEmail] = useState('')
+    const [error, setError] = useState('')
     const HandleSingUp = async(name,password,lastname,date,email) => {
         try{
             const backendurUrl = import.meta.env.VITE_BACKEND_URL
@@ -22,8 +24,17 @@ export const Form = () => {
             })
             const data = await response.json()
         }
-        catch (error) {setError}  
+        catch (err) {setError(err.error)
+            throw new Error('Error al registrarse')
+        }
     }
+
+    const HandleOnSubmit = async(evt) => {
+        evt.preventDefault();
+        const response = await HandleSingUp(name,password,lastname,email,date)
+        if (response)
+    } 
+
     return (
 
         <div className="container mt-5" style={{ maxWidth: "500px" }}>
