@@ -40,7 +40,7 @@ export const UserData = () => {
             <ul>
                 {payments.map((payment) => (
                     <li key={payment.id}>
-                        Monto: {payment.amount} - Fecha: {payment.date_payment}
+                        Cantidad: {payment.amount} - Fecha: {payment.date_payment}
                     </li>
                 ))}
             </ul>
