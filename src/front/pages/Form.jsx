@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaInstagram } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 
 export const Form = () => {
+    const [name, setName] = useState('')
+    const [password, setPassword] = useState('')
+    const [lastname, setLastname] = useState('')
+    const [date, setDate] = useState('')
+    const [email, setEmail] = useState('')
+    const HandleSingUp = async(name,password,lastname,date,email) => {
+        try{
+            const backendurUrl = import.meta.env.VITE_BACKEND_URL
+            if (!backendurUrl) throw new Error('Backend error')
+            const response = await fetch (`${backendUrl}/api/signup`, {
+            method : 'POST',
+            headers : {"Content-type":"application/json"},
+            body : JSON.stringify({
+                name,password,lastname,email,date
+            })
+            })
+            const data = await response.json()
+        }
+        catch (error) {setError}  
+    }
     return (
 
         <div className="container mt-5" style={{ maxWidth: "500px" }}>
@@ -23,10 +43,14 @@ export const Form = () => {
                 }}
             >
                 <h2 className="mb-4 text-center">Crear Nuevo Usuario</h2>
-                <form>
+                <form onSubmit={ } >
                     <div className="mb-3">
-                        <label htmlFor="nombrePerfil" className="form-label fw-semibold">Nombre de perfil</label>
-                        <input type="text" className="form-control" id="nombrePerfil" placeholder="Ej. Mizifú" />
+                        <label htmlFor="nombreCompleto" className="form-label fw-semibold">Nombre</label>
+                        <input type="text" className="form-control" id="nombreCompleto" placeholder="Ej. Mizifú" onChange={(e) => setName(e.target.value)} />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="nombreCompleto" className="form-label fw-semibold">Apellidos</label>
+                        <input type="text" className="form-control" id="nombreCompleto" placeholder="Ej. Alvarez Ortiz" onChange={(e) => setLastname(e.target.value)} />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label fw-semibold">Contraseña</label>
@@ -35,19 +59,16 @@ export const Form = () => {
                             className="form-control"
                             id="password"
                             placeholder="Ingresa tu contraseña"
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="nombreCompleto" className="form-label fw-semibold">Nombre</label>
-                        <input type="text" className="form-control" id="nombreCompleto" placeholder="Ej. Mizifú" />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="nombreCompleto" className="form-label fw-semibold">Apellidos</label>
-                        <input type="text" className="form-control" id="nombreCompleto" placeholder="Ej. Alvarez Ortiz" />
+                        <label htmlFor="nombreCompleto" className="form-label fw-semibold">Fecha de nacimiento</label>
+                        <input type="date" className="form-control" id="nombreCompleto" placeholder="Ej. Alvarez Ortiz" onChange={(e) => setDate(e.target.value)} />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="gmail" className="form-label fw-semibold">Correo Gmail</label>
-                        <input type="email" className="form-control" id="gmail" placeholder="Ej. Mizifú22@gmail.com" />
+                        <input type="email" className="form-control" id="gmail" placeholder="Ej. Mizifú22@gmail.com" onChange={(e) => setEmail(e.target.value)} />
                     </div>
                     <div className="d-grid">
                         <button type="submit" className="btn btn-canela">
@@ -89,5 +110,3 @@ export const Form = () => {
         </div>
     )
 }
-
-export default Form;

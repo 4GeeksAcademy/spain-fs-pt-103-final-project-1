@@ -11,7 +11,6 @@ import { MdOutlineTipsAndUpdates } from "react-icons/md";
 
 
 
-
 export const Home = () => {
 
 	const { store, dispatch } = useGlobalReducer()

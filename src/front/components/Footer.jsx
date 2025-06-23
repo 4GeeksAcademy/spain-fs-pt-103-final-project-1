@@ -1,3 +1,4 @@
+
 import React from "react";
 import { PiDog } from "react-icons/pi";
 import { PiCat } from "react-icons/pi";
@@ -50,7 +51,7 @@ export const Footer = () => {
           </div>
 
           <div className="col-md-2 mb-md-0 mb-3">
-            <h5 className="text-dark text-uppercase fw-bold text-dark" className="text-uppercase">SIGUENOS</h5>
+            <h5 className="text-dark text-uppercase fw-bold text-dark">SIGUENOS</h5>
             <ul className="list-unstyled">
               <li><a href="#!" className="link-footer"><FaInstagram /> InstagramProtectora</a></li>
               <li><a href="#!" className="link-footer"><FaFacebook /> FacebookProtectora</a></li>
