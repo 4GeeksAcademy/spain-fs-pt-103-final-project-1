@@ -10,12 +10,12 @@ export const DetailCat = () => {
             <div className="text-center  text m-4 my-4">
                 <h1 className='fw-bolder'>Cat</h1>
                 <hr className="my-4"/>
-                <p className="text-justify text fw-semibold">historia del gatito</p>
+                <p className="text-justify text fw-semibold">historia del gatito:</p>
                 <hr className="my-4"/>
                 <p className="text-justify text fw-semibold">Edad:</p>
                 <p className="text-justify text fw-semibold">Raza:</p>
                 <p className="text-justify text fw-semibold">Castración:</p>
-                <p className="text-justify text fw-semibold">Personalidad</p>
+                <p className="text-justify text fw-semibold">Personalidad:</p>
             </div>
             </div>
         </div>

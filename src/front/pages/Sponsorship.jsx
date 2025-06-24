@@ -8,7 +8,7 @@ export const Sponsorship = () => {
            <div className="text-center m-3" >
                 <div className="card border-info mb-3 m-auto" style={{ width: 800 }}>
                     <div className="card-body">
-                        <h5 className="card-title">Si estás interesado en apadrinar, pulsa en el boton de "Saber Mas"  </h5>
+                        <h5 className="card-title">Si estás interesado en apadrinar, pulsa en el boton de "Saber más"  </h5>
                     </div>
                 </div>
             </div>
