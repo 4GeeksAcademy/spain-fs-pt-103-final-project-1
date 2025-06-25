@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/img/logo.jpeg";
 import useGlobalReducer from "../hooks/useGlobalReducer";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { LuPawPrint } from "react-icons/lu";
 
 export const Navbar = () => {
@@ -12,11 +12,10 @@ export const Navbar = () => {
 		localStorage.removeItem("token");
 		dispatch({type: "Logout"});
 		navigate("/")
-
-	 }
+	}
 	return (
 		<>
-			<nav className="navbar navbar-expand navbar-light bg-ligth border  border-dark">
+			<nav className="navbar navbar-expand navbar-light bg-ligth border border-dark">
 				<div className="container">
 					<Link to="/">
 						<img src={logoAnimal} className="img-fluid rounded-circle" style={{ width: 40 }} alt="imagen" />
@@ -36,7 +35,7 @@ export const Navbar = () => {
 					</div>
 					<div className="ml-auto nav-item dropdown">
 						{store.user ? (
-							<button className="dropdown-toggle btn btn-primary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<button className="dropdown-toggle btn btn-primary " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								{store.user.email}
 							</button>
 						) : (
@@ -44,7 +43,6 @@ export const Navbar = () => {
 								Ingresar
 							</button>
 						)}
-
 						<ul className="dropdown-menu">
 							{store.user ? (
 								<li>
@@ -52,7 +50,7 @@ export const Navbar = () => {
 								</li>
 							) : (
 								<li>
-									<Link to="/login">
+									<Link className="no-link" to="/login">
 										<button className="dropdown-item">Iniciar sesión</button>
 									</Link>
 								</li>
@@ -65,15 +63,12 @@ export const Navbar = () => {
 								</button>
 							) : (
 								<li>
-									<Link to="/register">
+									<Link className="no-link" to="/register">
 										<button className="dropdown-item">Registrarme</button>
 									</Link>
 								</li>
 							)}
-
 						</ul>
-
-
 					</div >
 				</div >
 			</nav >
