@@ -13,7 +13,7 @@ import {Login} from "./pages/Login";
 import {Pay} from "./pages/Pay";
 import { UserData } from "./pages/UserData";
 import { PrivarteRoute } from "./components/PrivateRoute";
-import { Form } from "./pages/Form"
+import { Form } from "./pages/Form";
 
 
 
