@@ -13,7 +13,7 @@ import {Login} from "./pages/Login";
 
 import { UserData } from "./pages/UserData";
 import { PrivarteRoute } from "./components/PrivateRoute";
-import { ListFoodCat } from "./pages/ListFoodCat";
+import  ListFoodCat  from "./components/ListFoodCat";
 
 
 

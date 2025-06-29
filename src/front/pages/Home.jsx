@@ -7,6 +7,7 @@ import  Carousel  from "../components/Carousel.jsx";
 import Jumbotron from "../components/Jumbotron.jsx";
 import { GiPawHeart } from "react-icons/gi";
 import { MdOutlineTipsAndUpdates } from "react-icons/md";
+import ListFoodCat from "../components/ListFoodCat.jsx";
 
 
 
@@ -52,6 +53,7 @@ export const Home = () => {
 			<hr className="my-4"/>
 			<h1>Tips para cuidar de tu minino <MdOutlineTipsAndUpdates /></h1>
 			<Carousel cards={[<CardTips />]} />
+			<ListFoodCat />
 		</div>
 	);
 }; 
