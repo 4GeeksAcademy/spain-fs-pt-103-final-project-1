@@ -78,8 +78,11 @@ def login():
         return jsonify({'err': 'Error verifying password'}), 500
     
     token = create_access_token(identity=str(user.id))
+    is_admin = user.email == 'admin@admin.com'
 
-    return jsonify({'token': token}),200
+    return jsonify({'token': token,
+                     'is_admin': is_admin
+                     }),200
 
 @api.route('/user/user-data', methods=['GET'])
 @jwt_required()
