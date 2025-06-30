@@ -2,7 +2,6 @@ import React, { useEffect } from "react"
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Card } from "../components/Card.jsx";
-import { CardTips } from "../components/CardTips.jsx";
 import  Carousel  from "../components/Carousel.jsx";
 import Jumbotron from "../components/Jumbotron.jsx";
 import { GiPawHeart } from "react-icons/gi";

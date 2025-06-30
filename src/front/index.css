@@ -1,34 +1,61 @@
 .link-footer {
-                  color: black !important; /* color negro */
-                font-weight: 500;
-                text-decoration: none;
-                padding: 0.5rem 1rem;
-                border-radius: 0.75rem;
-                display: inline-block;
-                font-family: 'Segoe UI', sans-serif;
-                transition: all 0.3s ease;
-                position: relative;
-                }
-                .link-pretty::after {
-                  content: "";
-                position: absolute;
-                left: 0;
-                bottom: 4px;
-                width: 0%;
-                height: 2px;
-                background-color: black;
-                transition: width 0.3s ease;
-                }
+  color: black !important; /* color negro */
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  display: inline-block;
+  font-family: "Segoe UI", sans-serif;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.link-pretty::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
 
-                .link-pretty:hover::after {
-                  width: 100%;
-                }
+.link-pretty:hover::after {
+  width: 100%;
+}
 
-                .link-pretty:hover {
-                  transform: scale(1.03);
-                color: black !important;
-                }
+.link-pretty:hover {
+  transform: scale(1.03);
+  color: black !important;
+}
 
+.social-icon {
+  display: inline-flex;
+  margin: 0 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.3));
+}
+
+.social-icon:active {
+  transform: scale(0.95);
+  filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.2));
+}
+.btn-canela {
+  background-color: #d2b48c; /* color canela claro */
+  color: #4b3b2b; /* un marrón oscuro para el texto */
+  border: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-canela:hover {
+  background-color: #c19a6b; /* tono un poco más oscuro de canela */
+  color: #fff; /* texto blanco para buen contraste */
+}
 
 .no-link {
   text-decoration: none !important;
