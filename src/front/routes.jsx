@@ -10,12 +10,9 @@ import { Home } from "./pages/Home";
 import { Single } from "./pages/Single";
 import { Demo } from "./pages/Demo";
 import {Login} from "./pages/Login";
-
 import { UserData } from "./pages/UserData";
 import { PrivarteRoute } from "./components/PrivateRoute";
 import  ListFoodCat  from "./components/ListFoodCat";
-
-
 import { Sponsorship } from "./pages/Sponsorship"
 import { Adoption } from "./pages/Adoption"
 import { DetailCat } from "./pages/DetailCat"
@@ -37,7 +34,6 @@ export const router = createBrowserRouter(
         <Route path="/demo" element={<Demo />} />
         <Route path='/login' element = {<Login />} />
         <Route path='/products-kiwoko' element = {<ListFoodCat />} />
-      
         <Route path='/sponsorship' element={<Sponsorship />} />
         <Route path="/adoption" element={<Adoption />} />
         <Route path="/detail-cat-page" element={<DetailCat />} />

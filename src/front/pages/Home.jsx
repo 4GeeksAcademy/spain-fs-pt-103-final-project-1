@@ -85,8 +85,6 @@ const tips = [
 			<Carousel cards={[<Card />]} /> 
 			<hr className="my-4"/>
 			<h1>Tips para cuidar de tu minino <MdOutlineTipsAndUpdates /></h1>
-			<Carousel cards={[<CardTips />]} />
-			<ListFoodCat />
 			<Carousel cards={tips.map((tip, index) => (
 				<div key={tip.title} className="card text-bg-info m-3" style={{ width : 250, height : 250 }}>
                 <div className="card-header">{`Tip #${index}`}</div>
@@ -96,6 +94,7 @@ const tips = [
                 </div>
             </div>
 			))} />
+			<ListFoodCat />
 		</div>
 	);
 }; 

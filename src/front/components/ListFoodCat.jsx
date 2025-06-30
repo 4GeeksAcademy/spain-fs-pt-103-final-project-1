@@ -21,7 +21,7 @@ import Carousel from "./Carousel.jsx";
    
     const cards = data.map((item, index) => (
         <div
-            className="card m-2 h-100 d-flex flex-column justify-content-between"
+            className="card m-5 h-100 d-flex flex-column justify-content-between"
             style={{ width: "18rem", minHeight: "450px"  }}
             key={index}
         >
@@ -38,7 +38,7 @@ import Carousel from "./Carousel.jsx";
         </div>
     ));
     return(
-    <div className="container mt-4">
+    <div className="container  m-5 mt-4">
         <h1>Piensos para tu gato</h1>
         <Carousel cards={cards} />
     </div>
