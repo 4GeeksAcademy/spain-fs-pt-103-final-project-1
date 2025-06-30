@@ -56,8 +56,8 @@ export const Form = () => {
                             <input type="text" className="form-control" id="nombreCompleto" placeholder="Ej. Mizifú" onChange={(e) => setName(e.target.value)} />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="nombreCompleto" className="form-label fw-semibold">Apellidos</label>
-                            <input type="text" className="form-control" id="nombreCompleto" placeholder="Ej. Alvarez Ortiz" onChange={(e) => setLastname(e.target.value)} />
+                            <label htmlFor="apellido" className="form-label fw-semibold">Apellidos</label>
+                            <input type="text" className="form-control" id="apellido" placeholder="Ej. Alvarez Ortiz" onChange={(e) => setLastname(e.target.value)} />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="password" className="form-label fw-semibold">Contraseña</label>
@@ -70,8 +70,8 @@ export const Form = () => {
                             />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="nombreCompleto" className="form-label fw-semibold">Fecha de nacimiento</label>
-                            <input type="date" className="form-control" id="nombreCompleto" placeholder="Ej. Alvarez Ortiz" onChange={(e) => setBirthdate(e.target.value)} />
+                            <label htmlFor="birthdate" className="form-label fw-semibold">Fecha de nacimiento</label>
+                            <input type="date" className="form-control" id="birthdate" placeholder="Ej. Alvarez Ortiz" onChange={(e) => setBirthdate(e.target.value)} />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="gmail" className="form-label fw-semibold">Correo Gmail</label>
