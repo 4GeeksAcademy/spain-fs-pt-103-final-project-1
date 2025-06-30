@@ -189,18 +189,36 @@ def get_all_sponsor():
 @api.route('/payment-registration', methods = ['POST'])
 def create_payment():
     body = request.get_json()
+    current_user_id = get_jwt_identity()
 
-    if "sponsor_id" not in body or "amount" not in body or "date_payment" not in body:
+    if "cat_id" not in body or "amount" not in body or "date_payment" not in body:
         return jsonify({'err':'Bad request'}),400
     
-    payment = PaymentRegistration()
-    payment.sponsor_id = body['sponsor_id']
-    payment.amount = body['amount']
-    payment.date_payment = body['date_payment']
+    cat_id = body['cat_id']
+    amount = body['amount']
+    date_payment = body['date_payment']
+
+    sponsor = db.session.execute(
+        select(Sponsor).where(
+            Sponsor.user_id == current_user_id,
+            Sponsor.cat_id == cat_id
+        )
+    ).scalar_one_or_none()
+
+    if sponsor is None:
+        sponsor = Sponsor(user_id=current_user_id, cat_id=cat_id)
+        db.session.add(sponsor)
+        db.session.commit()
+    
+    payment = PaymentRegistration(
+        sponsor_id=sponsor.id,
+        amount= amount,
+        date_payment= date_payment
+    )
     db.session.add(payment)
     db.session.commit()
 
-    return jsonify({'ok': 'Payment register'})
+    return jsonify({'ok': 'Payment and sponsorship registered'}),201
 
 
 @api.route('/payment-registration', methods =['GET'])
