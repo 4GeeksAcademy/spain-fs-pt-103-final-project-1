@@ -42,7 +42,6 @@ export const router = createBrowserRouter(
             <UserData/>
           </PrivarteRoute>
         }/>
-    
       </Route>
     )
 );
