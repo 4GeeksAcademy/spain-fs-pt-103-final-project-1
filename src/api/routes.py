@@ -117,7 +117,7 @@ def get_user_for_id(user_id):
 def create_cat():
     body = request.get_json()
 
-    if 'name' not in body or 'age' not in body  or  "race" not in body or  "castration" not in body or  "character" not in body:
+    if 'name' not in body or 'age' not in body  or  "race" not in body or  "castration" not in body or  "character" not in body or "image" not in body or "history" not in body:
         return  jsonify({'err': 'Bad request'}),400
     
     search_exist = select(Cat).where(Cat.name == body['name'])
@@ -132,6 +132,8 @@ def create_cat():
     cat.race = body['race']
     cat.castration = body['castration']
     cat.character = body['character']
+    cat.history = body['history']
+    cat.image = body['image']
     db.session.add(cat)
     db.session.commit()
 

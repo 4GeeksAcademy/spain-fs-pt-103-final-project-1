@@ -1,6 +1,9 @@
 import logo from "../assets/img/logo.jpeg";
 
 export const DetailCat = () => {
+
+    
+
     return (
         <div className="container" style={{ height : 600}} >
              <div className="container">
