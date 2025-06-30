@@ -16,6 +16,9 @@ import { PrivarteRoute } from "./components/PrivateRoute";
 import  ListFoodCat  from "./components/ListFoodCat";
 
 
+import { Sponsorship } from "./pages/Sponsorship"
+import { Adoption } from "./pages/Adoption"
+import { DetailCat } from "./pages/DetailCat"
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -35,6 +38,9 @@ export const router = createBrowserRouter(
         <Route path='/login' element = {<Login />} />
         <Route path='/products-kiwoko' element = {<ListFoodCat />} />
       
+        <Route path='/sponsorship' element={<Sponsorship />} />
+        <Route path="/adoption" element={<Adoption />} />
+        <Route path="/detail-cat-page" element={<DetailCat />} />
         <Route path="/user-data" element = {
           <PrivarteRoute>
             <UserData/>
