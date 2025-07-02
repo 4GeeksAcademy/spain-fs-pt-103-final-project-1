@@ -37,7 +37,7 @@ export const router = createBrowserRouter(
       <Route path="/form" element={<Form />} />
       <Route path='/sponsorship' element={<Sponsorship />} />
       <Route path="/adoption" element={<Adoption />} />
-      <Route path="/detail-cat-page" element={<DetailCat />} />
+      <Route path="/detail-cat-page/:id" element={<DetailCat />} />
       <Route path="/user-data" element={
         <PrivarteRoute>
           <UserData />

@@ -146,7 +146,7 @@ def get_all_cat():
    all_cats = list(map(lambda cat: cat.serialize(), all_cats))   
     
    response_body ={
-        "Cats" : all_cats
+        "cats" : all_cats
     }
 
    return jsonify(response_body),200
