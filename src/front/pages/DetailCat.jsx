@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ImageUploader from "../components/ImageUploader";
+import { CheckoutForm } from '../components/CheckoutForm';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 
 
 export const DetailCat = () => {
-
+    const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
     const [cat, setCat] = useState(null);
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState(null);
     const { id } = useParams(); // Obtiene el ID de la URL
+    const [mostrarPago, setMostrarPago] = useState(false);
+    const isLoggedIn = !!localStorage.getItem('token');
 
     useEffect(() => {
         const handleGetCat = async () => {
@@ -17,7 +22,7 @@ export const DetailCat = () => {
                 setCargando(true);
                 setError(null);
                 const backendUrl = import.meta.env.VITE_BACKEND_URL
-                 if (!backendUrl) throw new Error('Backend error')
+                if (!backendUrl) throw new Error('Backend error')
                 const response = await fetch(`${backendUrl}/api/cat/${id}`, {
                     method: 'GET',
                     headers: {
@@ -44,7 +49,7 @@ export const DetailCat = () => {
     if (!cat) return null;
     console.log(cat)
     return (
-        <div className="container" style={{ height: 600 }} >
+        <div className="container py-5" style={{ paddingBottom: '200px' }}>
             <div className="container">
                 <div className="rounded float-start" style={{ width: 400 }} >
                     <ImageUploader idImage={'adorable-chaton-qui-a-sommeil_rzphdy'} />
@@ -58,8 +63,24 @@ export const DetailCat = () => {
                     <p className="text-justify text fw-semibold">{cat.race}</p>
                     <p className="text-justify text fw-semibold">{cat.castration}</p>
                     <p className="text-justify text fw-semibold">{cat.character}</p>
+                    
+                        {isLoggedIn ? (
+                            <>
+                                <button onClick={() => setMostrarPago(true)}>Donar</button>
+                                {mostrarPago && (
+                                    <div style={{ marginTop: '150px' }}>
+                                        <Elements stripe={stripePromise}>
+                                            <CheckoutForm />
+                                        </Elements>
+                                    </div>
+                                )}
+                            </>
+                        ) : (
+                            <p>Por favor inicia sesión para donar.</p>
+                        )}
+                    
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
