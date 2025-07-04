@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"
 import { FaInstagram } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
@@ -29,6 +30,9 @@ export const Form = () => {
             const result = await response.json();
             console.log(result);
             alert('Formulario enviado correctamente');
+            if (result){
+                navigate('/login');
+            }
         } catch (error) {
             console.error('Error al enviar:', error);
         }

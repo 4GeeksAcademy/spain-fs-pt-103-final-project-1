@@ -18,6 +18,7 @@ import { Sponsorship } from "./pages/Sponsorship"
 import { Adoption } from "./pages/Adoption"
 import { DetailCat } from "./pages/DetailCat"
 import { Admin } from "./pages/Admin";
+import { AdminListSponsor } from "./pages/AdminListSponsor";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,7 +39,7 @@ export const router = createBrowserRouter(
       <Route path='/products-kiwoko' element={<ListFoodCat />} />
       <Route path='/sponsorship' element={<Sponsorship />} />
       <Route path="/adoption" element={<Adoption />} />
-      <Route path="/form" element={<Form />} />
+     <Route path="/form" element={<Form />} />
       <Route path="/detail-cat-page" element={<DetailCat />} />
       <Route path="/admin" element={<Admin />} />
       <Route path="/user-data" element={

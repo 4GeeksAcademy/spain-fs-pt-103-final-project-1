@@ -1,7 +1,8 @@
 import Carousel from "../components/Carousel.jsx"
-import  Card  from "../components/Card.jsx";
+import  {Card}  from "../components/Card.jsx";
 
-export const Sponsorship = () => {
+export const Sponsorship = ({cat}) => {
+ /* hacer fetch y hacer map*/ 
     return (
         <div className="content m-4">
            <h1 className="text-center m-3">Quieres apadrinar?</h1>
@@ -13,7 +14,7 @@ export const Sponsorship = () => {
                 </div>
             </div>
             <div>
-                <Carousel cards={[<Card />]} />
+                <Carousel cards={[<Card/>]} />
             </div>
         </div>
     )

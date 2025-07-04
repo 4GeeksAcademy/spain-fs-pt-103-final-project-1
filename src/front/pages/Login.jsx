@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import storeReducer from "../store"
 import useGlobalReducer from "../hooks/useGlobalReducer";
 
 
@@ -33,11 +32,10 @@ export const Login = () => {
             if (!data.token)
                 return undefined;
 
-
-
-
             localStorage.setItem('token', data.token)
-            console.log("esto es el data:", data)
+            localStorage.setItem('is_admin', JSON.stringify(data.is_admin))
+            dispatch({ type: "set_token", payload: data.token });
+            dispatch({ type: "admin", payload: { is_admin: data.is_admin } });
             return data;
 
 
@@ -53,14 +51,24 @@ export const Login = () => {
         evt.preventDefault();
         const response = await handleLogin(email, password);
 
+        if (!response) {
+            setError('Error en el login')
+            return;
+        }
+
+        dispatch({
+            type: 'admin',
+            payload: {
+                is_admin: response.is_admin
+            }
+        })
+
         if (response) {
-            if (response.is_admin === true || response.isAdmin === true) {
-                navigate('/admin');
+            if (response.is_admin === true) {
+                navigate('/');
             } else {
                 navigate('/user-data');
             }
-        } else {
-            setError('Error login');
         }
     }
 

@@ -30,10 +30,10 @@ import Carousel from "./Carousel.jsx";
                 className="card-img-top"
                 alt={item.nombre}
                 style={{ objectFit: "cover", height: "200px" }}/>
-            <div className="card-body d-flex flex-column justify-content-between">
+            <div className="card-body d-flex flex-column">
                 <h5 className="card-title">{item.nombre}</h5>
                 <p className="card-text">{item.precio}</p>
-                <a href={item.url} className="btn btn-primary mt-auto w-100">Comprar</a>
+                <a href={item.url} className="btn btn-primary mt-auto w-100" target="_blank" rel="noopener noreferrer">Comprar</a>
             </div>
         </div>
     ));

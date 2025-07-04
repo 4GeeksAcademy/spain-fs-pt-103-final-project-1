@@ -10,15 +10,15 @@ export const UserData = () => {
     const handleListSponsor = async () => {
         try {
             const response = await fetch(
-                "https://refactored-doodle-5gr9497rp94vh754r-3001.app.github.dev/api/payment-registration",{
-                 headers:{
+                "https://refactored-doodle-5gr9497rp94vh754r-3001.app.github.dev/api/payment-registration", {
+                headers: {
                     'Authorization': `Bearer ${store.token}`
                 }
             }
             );
             const data = await response.json();
-            console.log("esto es data", data.payments)
-           
+
+
             setPayments(data.payments);
         } catch (error) {
             console.error("Error fetching payments:", error);
@@ -26,24 +26,35 @@ export const UserData = () => {
     };
 
     useEffect(() => {
-       if (store.user) {
-         console.log(store.token)
-        handleListSponsor();
-    }
-}, [store.user]);
+        if (store.user) {
+            console.log(store.token)
+            handleListSponsor();
+        }
+    }, [store.user]);
 
     return (
-        <section>
-            <h1>Bienvenido usuario:</h1>
-           <h2>{store.user?.email || "Cargando..."}</h2>
-            <h3>Tus pagos:</h3>
-            <ul>
-                {payments.map((payment) => (
-                    <li key={payment.id}>
-                        Cantidad: {payment.amount} - Fecha: {payment.date_payment}
-                    </li>
-                ))}
-            </ul>
-        </section>
+        <>
+        <div className="container mt-5">
+            <div className="card shadow-sm">
+                <div className="card-body">
+                    <h1 className="card-text d-flex justify-content-center">Listado de gatos a los que has donado.</h1>
+                </div>
+            </div>
+        </div>
+            <div className="container mt-5 mb-5">
+                <div className="card shadow-sm">
+                    <div className="card-body">
+
+                        {payments.map((item, index) => (
+                            <div key={index} className="mb-3 border-bottom pb-2">
+                                <h5 className="card-title">Nombre del gato: {item.sponsor.cat_name}</h5>
+                                <p className="card-text">Cantidad: ${item.amount}</p>
+                                <p className="card-text">Fecha de Registro: {item.date_payment}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </>
     );
 };

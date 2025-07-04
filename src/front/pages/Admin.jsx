@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FaInstagram, FaWhatsapp, FaFacebook } from 'react-icons/fa';
+import useGlobalReducer from '../hooks/useGlobalReducer';
 
 
 export const Admin = () => {
@@ -8,6 +9,7 @@ export const Admin = () => {
     const [race, setRace] = useState('');
     const [castration, setCastration] = useState('');
     const [character, setCharacter] = useState('');
+    const {store,dispatch} = useGlobalReducer();
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {

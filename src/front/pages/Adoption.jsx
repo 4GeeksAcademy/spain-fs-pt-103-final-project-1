@@ -1,5 +1,6 @@
 import Carousel from "../components/Carousel.jsx"
-import Card from "../components/Card.jsx";
+import {Card} from "../components/Card.jsx";
+
 
 export const Adoption = () => {
     return (
