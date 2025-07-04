@@ -77,6 +77,8 @@ class Cat(db.Model):
     race: Mapped[str] = mapped_column (String(120),nullable= False)
     castration: Mapped[bool] = mapped_column(nullable=False)
     character:Mapped[str] = mapped_column (String(120),nullable= False)
+    image: Mapped[str] = mapped_column (String(400), nullable= False)
+    history: Mapped[str] = mapped_column (String(600), nullable= False)
 
     sponsor_cat: Mapped[List["Sponsor"]] = relationship(back_populates="cat")
 
@@ -87,7 +89,9 @@ class Cat(db.Model):
             "age": self.age,
             "race":self.race,
             "castration": self.castration,
-            "character": self.character
+            "character": self.character,
+            "image" : self.image,
+            "history" : self.history
         }
 
     
