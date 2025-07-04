@@ -40,8 +40,11 @@ export const router = createBrowserRouter(
       <Route path='/sponsorship' element={<Sponsorship />} />
       <Route path="/adoption" element={<Adoption />} />
      <Route path="/form" element={<Form />} />
-      <Route path="/detail-cat-page" element={<DetailCat />} />
+      <Route path="/detail-cat-page/:id" element={<DetailCat />} />
       <Route path="/admin" element={<Admin />} />
+      <Route path="/admin-list-sponsor" element={<AdminListSponsor />} />
+
+      {/* Private Routes: These routes are protected and require authentication. */}
       <Route path="/user-data" element={
         <PrivarteRoute>
           <UserData />

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FaInstagram, FaWhatsapp, FaFacebook } from 'react-icons/fa';
 import useGlobalReducer from '../hooks/useGlobalReducer';
-
+   import { useNavigate } from "react-router-dom";
 
 export const Admin = () => {
     const [name, setName] = useState('');
@@ -9,7 +9,10 @@ export const Admin = () => {
     const [race, setRace] = useState('');
     const [castration, setCastration] = useState('');
     const [character, setCharacter] = useState('');
+    const [image, setImage] = useState('');
+    const [history, setHistory] = useState('');
     const {store,dispatch} = useGlobalReducer();
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -23,13 +26,16 @@ export const Admin = () => {
                     age,
                     race,
                     castration,
-                    character
+                    character,
+                    image,
+                    history
                 })
             });
             const result = await response.json();
             console.log(result);
            
             alert('Formulario enviado correctamente');
+            navigate('/');
         } catch (error) {
             console.error('Error al enviar:', error);
         }
@@ -78,9 +84,18 @@ export const Admin = () => {
                         <label htmlFor="castration" className="form-label fw-semibold">¿Está castrado? </label>
                         <input type="checkbox" className="form-check-input" id="castration" onChange={(e) => setCastration(e.target.checked)} />
                     </div>
+                    <div className="mb-3">
+                        <label htmlFor="image" className="form-label fw-semibold">Imagen:</label>
+                        <input type="text" className="form-control" id="image" onChange={(e) => setImage(e.target.value)} />
+                    </div>
+                     <div className="mb-3">
+                        <label htmlFor="History" className="form-label fw-semibold">Historia:</label>
+                        <input type="text" className="form-control" id="History" onChange={(e) => setHistory(e.target.value)} />
+                    </div>
                 
 
                     <div className="d-grid">
+                        
                         <button type="submit" className="btn btn-canela">
                             Registar Gato
                         </button>

@@ -29,8 +29,8 @@ export const DetailCat = () => {
                     throw new Error(`Error`);
                 }
                 const data = await response.json();
-                console.log(data)
-                setCat(data);
+                console.log(data.Cat)
+                setCat(data.Cat);
             } catch (err) {
                 setError('Error cargando el gato: ' + err.message);
                 console.error('Error:', err);
@@ -42,7 +42,7 @@ export const DetailCat = () => {
         handleGetCat();
     }, [id]);
     if (!cat) return null;
-
+    console.log(cat)
     return (
         <div className="container" style={{ height: 600 }} >
             <div className="container">
