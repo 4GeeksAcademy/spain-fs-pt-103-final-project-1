@@ -61,7 +61,7 @@ export const Navbar = () => {
 							{isLoggedIn ? (
 								<li>
 									<Link className="no-link" to="/user-data">
-										<span className="dropdown-item">{userEmail}</span>
+									<span className="dropdown-item">{userEmail}</span>
 									</Link>
 								</li>
 							) : (

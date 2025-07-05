@@ -17,7 +17,7 @@ export const DetailCat = () => {
     const [error, setError] = useState(null);
     const { cat_id } = useParams(); // Obtiene el ID de la URL
     const [mostrarPago, setMostrarPago] = useState(false);
-    const token= localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     const [amount, setAmount] = useState(0);
     const [currency, setCurrency] = useState('EUR');
 
@@ -90,48 +90,51 @@ export const DetailCat = () => {
     console.log(amount)
     console.log(currency)
     return (
-        <div className="container py-5" style={{ paddingBottom: '200px' }}>
-            <div className="container">
-                <div className="rounded float-start" style={{ width: 400 }} >
-                    <ImageUploader idImage={'adorable-chaton-qui-a-sommeil_rzphdy'} />
-                </div>
-                <div className="text-center  text m-4 my-4">
-                    <h1 className='fw-bolder'>{cat.name}</h1>
-                    <hr className="my-4" />
-                    <p className="text-justify text fw-semibold">{cat.history}</p>
-                    <hr className="my-4" />
-                    <p className="text-justify text fw-semibold card-title">Edad : {cat.age}</p>
-                    <p className="text-justify text fw-semibold card-title">Raza : {cat.race}</p>
-                    <p className="text-justify text fw-semibold card-title">Castración : {cat.castration}</p>
-                    <p className="text-justify text fw-semibold card-title">Carácter : {cat.character}</p>
+        <div className="container  d-flex py-5" style={{ paddingBottom: '200px' }}>
+            <div style={{ width: 400 }}>
+                <ImageUploader idImage={'adorable-chaton-qui-a-sommeil_rzphdy'} />
+            </div>
+            <div className="text-start ms-4 " style={{ flex: 1 }}>
+                <h1 className='fw-bolder'>{cat.name}</h1>
+                <hr className="my-4" />
+                <p className="text-justify text fw-semibold">{cat.history}</p>
+                <hr className="my-4" />
+                <p className="text-justify text fw-semibold card-title">Edad : {cat.age}</p>
+                <hr className="my-4" />
+                <p className="text-justify text fw-semibold card-title">Raza : {cat.race}</p>
+                <hr className="my-4" />
+                <p className="text-justify text fw-semibold card-title">Castración : {cat.castration ? 'SI': 'NO'}</p>
+                <hr className="my-4" />
+                <p className="text-justify text fw-semibold card-title">Carácter : {cat.character}</p>
+                <hr className="my-4" />
 
-                    {isLoggedIn ? (
-                        <>
-                            <button onClick={() => setMostrarPago(true)} className='btn btn-primary'>
-                                Donar
-                            </button>
-                            <Modal show = {mostrarPago} onHide={() => setMostrarPago(false)} centered>
-                                <Modal.Header closeButton>
-                                    <Modal.Title>Donar</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-                                    <Elements stripe={stripePromise}>
-                                        <CheckoutForm
-                                            amount={amount}
-                                            setAmount={setAmount}
-                                            currency={currency}
-                                            setCurrency={setCurrency}
-                                            onPaymentSuccess={handlePaymentSuccess}
-                                        />
-                                    </Elements>
-                                </Modal.Body>
-                            </Modal>
-                        </>
-                    ) : (
-                        <p>Por favor inicia sesión para donar.</p>
-                    )}
-                </div>
+                {isLoggedIn ? (
+                    <>
+                        <button onClick={() => setMostrarPago(true)} className='btn btn-primary'>
+                            Donar
+                        </button>
+                        <Modal show={mostrarPago} onHide={() => setMostrarPago(false)} centered>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Donar</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Elements stripe={stripePromise}>
+                                    <CheckoutForm
+                                        amount={amount}
+                                        setAmount={setAmount}
+                                        currency={currency}
+                                        setCurrency={setCurrency}
+                                        onPaymentSuccess={handlePaymentSuccess}
+                                    />
+                                </Elements>
+                            </Modal.Body>
+                        </Modal>
+                    </>
+                ) : (
+                    <p>Por favor inicia sesión para donar.</p>
+                )}
             </div>
         </div>
+    
     );
 };
