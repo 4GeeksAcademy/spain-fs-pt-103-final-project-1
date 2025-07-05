@@ -39,8 +39,8 @@ export const router = createBrowserRouter(
       <Route path='/products-kiwoko' element={<ListFoodCat />} />
       <Route path='/sponsorship' element={<Sponsorship />} />
       <Route path="/adoption" element={<Adoption />} />
-     <Route path="/form" element={<Form />} />
-      <Route path="/detail-cat-page/:id" element={<DetailCat />} />
+      <Route path="/form" element={<Form />} />
+      <Route path="/detail-cat-page/:cat_id" element={<DetailCat />} />
       <Route path="/admin" element={<Admin />} />
       <Route path="/admin-list-sponsor" element={<AdminListSponsor />} />
 

@@ -4,17 +4,52 @@ import ImageUploader from "../components/ImageUploader";
 import { CheckoutForm } from '../components/CheckoutForm';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import { BiBody } from 'react-icons/bi';
+import { Modal } from 'react-bootstrap';
 
 
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 export const DetailCat = () => {
-    const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+
     const [cat, setCat] = useState(null);
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState(null);
-    const { id } = useParams(); // Obtiene el ID de la URL
+    const { cat_id } = useParams(); // Obtiene el ID de la URL
     const [mostrarPago, setMostrarPago] = useState(false);
-    const isLoggedIn = !!localStorage.getItem('token');
+    const token= localStorage.getItem('token');
+    const [amount, setAmount] = useState(0);
+    const [currency, setCurrency] = useState('EUR');
+
+    const isLoggedIn = token && token !== 'null' && token !== 'undefined';
+
+    const handlePostSponsor = async () => {
+        try {
+            const backendUrl = import.meta.env.VITE_BACKEND_URL
+            if (!backendUrl) throw new Error('Backend error')
+            const response = await fetch(`${backendUrl}/api/payment-registration`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({
+                    amount,
+                    currency,
+                    cat_id,
+                    date_payment: new Date().toISOString()
+                })
+
+            });
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    const handlePaymentSuccess = () => {
+        handlePostSponsor();
+        setMostrarPago(false);
+    };
 
     useEffect(() => {
         const handleGetCat = async () => {
@@ -23,7 +58,7 @@ export const DetailCat = () => {
                 setError(null);
                 const backendUrl = import.meta.env.VITE_BACKEND_URL
                 if (!backendUrl) throw new Error('Backend error')
-                const response = await fetch(`${backendUrl}/api/cat/${id}`, {
+                const response = await fetch(`${backendUrl}/api/cat/${cat_id}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -44,10 +79,16 @@ export const DetailCat = () => {
             }
         };
 
+
+
         handleGetCat();
-    }, [id]);
+
+    }, [cat_id]);
+
     if (!cat) return null;
-    console.log(cat)
+
+    console.log(amount)
+    console.log(currency)
     return (
         <div className="container py-5" style={{ paddingBottom: '200px' }}>
             <div className="container">
@@ -59,26 +100,36 @@ export const DetailCat = () => {
                     <hr className="my-4" />
                     <p className="text-justify text fw-semibold">{cat.history}</p>
                     <hr className="my-4" />
-                    <p className="text-justify text fw-semibold">{cat.age}</p>
-                    <p className="text-justify text fw-semibold">{cat.race}</p>
-                    <p className="text-justify text fw-semibold">{cat.castration}</p>
-                    <p className="text-justify text fw-semibold">{cat.character}</p>
-                    
-                        {isLoggedIn ? (
-                            <>
-                                <button onClick={() => setMostrarPago(true)}>Donar</button>
-                                {mostrarPago && (
-                                    <div style={{ marginTop: '150px' }}>
-                                        <Elements stripe={stripePromise}>
-                                            <CheckoutForm />
-                                        </Elements>
-                                    </div>
-                                )}
-                            </>
-                        ) : (
-                            <p>Por favor inicia sesión para donar.</p>
-                        )}
-                    
+                    <p className="text-justify text fw-semibold card-title">Edad : {cat.age}</p>
+                    <p className="text-justify text fw-semibold card-title">Raza : {cat.race}</p>
+                    <p className="text-justify text fw-semibold card-title">Castración : {cat.castration}</p>
+                    <p className="text-justify text fw-semibold card-title">Carácter : {cat.character}</p>
+
+                    {isLoggedIn ? (
+                        <>
+                            <button onClick={() => setMostrarPago(true)} className='btn btn-primary'>
+                                Donar
+                            </button>
+                            <Modal show = {mostrarPago} onHide={() => setMostrarPago(false)} centered>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Donar</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <Elements stripe={stripePromise}>
+                                        <CheckoutForm
+                                            amount={amount}
+                                            setAmount={setAmount}
+                                            currency={currency}
+                                            setCurrency={setCurrency}
+                                            onPaymentSuccess={handlePaymentSuccess}
+                                        />
+                                    </Elements>
+                                </Modal.Body>
+                            </Modal>
+                        </>
+                    ) : (
+                        <p>Por favor inicia sesión para donar.</p>
+                    )}
                 </div>
             </div>
         </div>
