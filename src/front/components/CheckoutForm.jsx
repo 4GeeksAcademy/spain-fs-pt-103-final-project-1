@@ -63,8 +63,8 @@ export const CheckoutForm = ({ amount, setAmount, currency, setCurrency, onPayme
 
     }
     return (
-        <form className="w-50 bg-light mx-auto" onSubmit={handleSubmit}>
-            <div className="mx-auto my-2 col-3">
+        <form className="w-75 bg-light mx-auto" onSubmit={handleSubmit}>
+            <div className="mx-auto my-2 col-6">
                 <label>Amount</label>
                 <input
                     type="text"
@@ -74,7 +74,7 @@ export const CheckoutForm = ({ amount, setAmount, currency, setCurrency, onPayme
                     onChange={(e) => setAmount((e.target.value))}
                 ></input>
             </div>
-            <div className="mx-auto col-3">
+            <div className="mx-auto  my-2 col-6">
                 <label>Moneda</label>
                 <select
                     value={currency}
