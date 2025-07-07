@@ -45,7 +45,7 @@ export const Footer = () => {
             <ul className="list-unstyled">
               <li><a href="https://github.com/alejajaja30" className="link-footer">Alejandra ·alejajaja30 <PiDog /></a></li>
               <li> <a href="https://github.com/nael-dev" className="link-footer">Nael ·nael_dev <PiCat /></a></li>
-              <li><a href="https://github.com/RCKCode" className="link-footer">"Ricardo ·RCKCode" <PiHorse /></a></li>
+              <li><a href="https://github.com/RCKCode" className="link-footer">Ricardo ·RCKCode <PiHorse /></a></li>
               <li><a href="#!"></a></li>
             </ul>
           </div>
