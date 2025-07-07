@@ -16,6 +16,32 @@ export const Home = () => {
 	const [cat, setCat] = useState([]);
 
 	const { store, dispatch } = useGlobalReducer()
+	useEffect(() => {
+	const token = localStorage.getItem("token");
+	if (!token || store.user) return;
+
+	const fetchUser = async () => {
+		try {
+			const backendUrl = import.meta.env.VITE_BACKEND_URL;
+			const res = await fetch(`${backendUrl}/api/user/user-data`, {
+				headers: {
+					"Authorization": `Bearer ${token}`
+				}
+			});
+			if (!res.ok) throw new Error("No se pudo recuperar el usuario");
+
+			const data = await res.json();
+			dispatch({ type: "set_user", payload: { user: data.user, token } });
+			localStorage.setItem("user", JSON.stringify(data.user));
+		} catch (err) {
+			console.error("Error al recuperar el usuario:", err);
+			localStorage.removeItem("token");
+			localStorage.removeItem("user");
+		}
+	};
+
+	fetchUser();
+}, []);
 
 	useEffect(() => {
 
