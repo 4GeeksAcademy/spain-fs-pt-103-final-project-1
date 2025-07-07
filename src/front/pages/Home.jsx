@@ -108,6 +108,7 @@ export const Home = () => {
 				</div>
 
 			))} />
+			<hr className="my-4" />
 			<ListFoodCat />
 		</div>
 	);

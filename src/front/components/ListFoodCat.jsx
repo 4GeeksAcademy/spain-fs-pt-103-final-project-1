@@ -38,7 +38,7 @@ import Carousel from "./Carousel.jsx";
         </div>
     ));
     return(
-    <div className="container  m-5 mt-4">
+    <div>
         <h1>Piensos para tu gato</h1>
         <Carousel cards={cards} />
     </div>
