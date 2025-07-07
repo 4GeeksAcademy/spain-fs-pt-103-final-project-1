@@ -10,13 +10,15 @@ import { Home } from "./pages/Home";
 import { Single } from "./pages/Single";
 import { Demo } from "./pages/Demo";
 import { Login } from "./pages/Login";
-import { Pay } from "./pages/Pay";
 import { UserData } from "./pages/UserData";
 import { PrivarteRoute } from "./components/PrivateRoute";
+import ListFoodCat from "./components/ListFoodCat";
 import { Form } from "./pages/Form";
 import { Sponsorship } from "./pages/Sponsorship"
 import { Adoption } from "./pages/Adoption"
 import { DetailCat } from "./pages/DetailCat"
+import { Admin } from "./pages/Admin";
+import { AdminListSponsor } from "./pages/AdminListSponsor";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,21 +30,28 @@ export const router = createBrowserRouter(
 
     // Root Route: All navigation will start from here.
     <Route path="/" element={<Layout />} errorElement={<h1>Not found!</h1>} >
+
       {/* Nested Routes: Defines sub-routes within the BaseHome component. */}
       <Route path="/" element={<Home />} />
       <Route path="/single/:theId" element={<Single />} />  {/* Dynamic route for single items */}
       <Route path="/demo" element={<Demo />} />
       <Route path='/login' element={<Login />} />
-      <Route path='/pay' element={<Pay />} />
-      <Route path="/form" element={<Form />} />
+      <Route path='/products-kiwoko' element={<ListFoodCat />} />
       <Route path='/sponsorship' element={<Sponsorship />} />
       <Route path="/adoption" element={<Adoption />} />
+      <Route path="/form" element={<Form />} />
+      <Route path="/detail-cat-page/:cat_id" element={<DetailCat />} />
+      <Route path="/admin" element={<Admin />} />
+      <Route path="/admin-list-sponsor" element={<AdminListSponsor />} />
+
+      {/* Private Routes: These routes are protected and require authentication. */}
       <Route path="/detail-cat-page/:id" element={<DetailCat />} />
       <Route path="/user-data" element={
         <PrivarteRoute>
           <UserData />
         </PrivarteRoute>
       } />
+
     </Route>
   )
 )
