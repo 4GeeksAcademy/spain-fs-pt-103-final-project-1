@@ -29,7 +29,6 @@ export const Form = () => {
                 })
             });
             const result = await response.json();
-            console.log(result);
             alert('Formulario enviado correctamente');
             if (result){
                 navigate('/login');

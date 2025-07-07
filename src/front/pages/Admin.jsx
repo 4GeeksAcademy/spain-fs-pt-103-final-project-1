@@ -32,8 +32,6 @@ export const Admin = () => {
                 })
             });
             const result = await response.json();
-            console.log(result);
-           
             alert('Formulario enviado correctamente');
             navigate('/');
         } catch (error) {

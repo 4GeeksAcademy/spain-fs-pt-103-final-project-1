@@ -69,7 +69,7 @@ export const DetailCat = () => {
                     throw new Error(`Error`);
                 }
                 const data = await response.json();
-                console.log(data.Cat)
+                console.log(currency)
                 setCat(data.Cat);
             } catch (err) {
                 setError('Error cargando el gato: ' + err.message);
@@ -87,8 +87,7 @@ export const DetailCat = () => {
 
     if (!cat) return null;
 
-    console.log(amount)
-    console.log(currency)
+    
     return (
         <div className="container  d-flex py-5" style={{ paddingBottom: '200px' }}>
             <div style={{ width: 400 }}>
