@@ -92,7 +92,7 @@ export const DetailCat = () => {
     return (
         <div className="container  d-flex py-5" style={{ paddingBottom: '200px' }}>
             <div style={{ width: 400 }}>
-                <ImageUploader idImage={'adorable-chaton-qui-a-sommeil_rzphdy'} />
+                <ImageUploader idImage={cat.image} />
             </div>
             <div className="text-start ms-4 " style={{ flex: 1 }}>
                 <h1 className='fw-bolder'>{cat.name}</h1>
