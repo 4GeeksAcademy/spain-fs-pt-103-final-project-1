@@ -6,6 +6,7 @@ import Carousel from "../components/Carousel.jsx";
 import Jumbotron from "../components/Jumbotron.jsx";
 import { GiPawHeart } from "react-icons/gi";
 import { MdOutlineTipsAndUpdates } from "react-icons/md";
+import ListFoodCat from "../components/ListFoodCat.jsx";
 import { identity } from "@cloudinary/url-gen/backwards/utils/legacyBaseUtil";
 import ImageUploader from "../components/ImageUploader.jsx";
 import { Link } from "react-router-dom";
@@ -107,6 +108,7 @@ export const Home = () => {
 				</div>
 
 			))} />
+			<ListFoodCat />
 		</div>
 	);
 }; 

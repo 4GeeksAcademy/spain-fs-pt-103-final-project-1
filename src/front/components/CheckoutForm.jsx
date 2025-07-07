@@ -3,13 +3,11 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useNavigate } from "react-router-dom"
 
 
-export const CheckoutForm = () => {
+export const CheckoutForm = ({ amount, setAmount, currency, setCurrency, onPaymentSuccess }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [clientSecret, setClientSecret] = useState('')
     const [loading, setLoading] = useState(false);
-    const [amount, setAmount] = useState(0)
-    const [currency, setCurrency] = useState('')
     const [paymentSuccess, setPaymentSuccess] = useState(false)
     const navigate = useNavigate()
 
@@ -52,6 +50,12 @@ export const CheckoutForm = () => {
         } else if (paymentIntent.status === 'succeeded') {
             console.log('Payment succeeded')
             setPaymentSuccess(true);
+
+
+            if (onPaymentSuccess) {
+                onPaymentSuccess();
+            }
+            
             setTimeout(() => navigate('/'), 2000);
         } else {
             console.log('algun error')
@@ -86,12 +90,12 @@ export const CheckoutForm = () => {
             <div className="my-5">
                 <CardElement />
             </div>
-            <button 
+            <button
                 type="submit"
                 className="btn btn-success mx-auto"
                 disabled={!stripe || loading}>
-                    
-                 Pay
+
+                Pay
             </button>
             {paymentSuccess && (
                 <div className="alert alert-success mt-3" role="alert">
