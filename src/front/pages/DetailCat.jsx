@@ -7,7 +7,7 @@ export const DetailCat = () => {
     const [cat, setCat] = useState(null);
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState(null);
-    const { id } = useParams(); // Obtiene el ID de la URL
+    const { id } = useParams();
 
     useEffect(() => {
         const handleGetCat = async () => {
