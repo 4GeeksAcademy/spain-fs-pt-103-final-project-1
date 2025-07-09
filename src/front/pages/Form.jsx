@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"
 import { FaInstagram } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
@@ -10,6 +11,7 @@ export const Form = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [birthdate, setBirthdate] = useState('');
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -27,8 +29,10 @@ export const Form = () => {
                 })
             });
             const result = await response.json();
-            console.log(result);
             alert('Formulario enviado correctamente');
+            if (result){
+                navigate('/login');
+            }
         } catch (error) {
             console.error('Error al enviar:', error);
         }
@@ -57,8 +61,8 @@ export const Form = () => {
                             <input type="text" className="form-control" id="nombreCompleto" placeholder="Ej. Mizifú" onChange={(e) => setName(e.target.value)} />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="nombreCompleto" className="form-label fw-semibold">Apellidos</label>
-                            <input type="text" className="form-control" id="nombreCompleto" placeholder="Ej. Alvarez Ortiz" onChange={(e) => setLastname(e.target.value)} />
+                            <label htmlFor="apellido" className="form-label fw-semibold">Apellidos</label>
+                            <input type="text" className="form-control" id="apellido" placeholder="Ej. Alvarez Ortiz" onChange={(e) => setLastname(e.target.value)} />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="password" className="form-label fw-semibold">Contraseña</label>
@@ -71,8 +75,8 @@ export const Form = () => {
                             />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="nombreCompleto" className="form-label fw-semibold">Fecha de nacimiento</label>
-                            <input type="date" className="form-control" id="nombreCompleto" placeholder="Ej. Alvarez Ortiz" onChange={(e) => setBirthdate(e.target.value)} />
+                            <label htmlFor="birthdate" className="form-label fw-semibold">Fecha de nacimiento</label>
+                            <input type="date" className="form-control" id="birthdate" placeholder="Ej. Alvarez Ortiz" onChange={(e) => setBirthdate(e.target.value)} />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="gmail" className="form-label fw-semibold">Correo Gmail</label>

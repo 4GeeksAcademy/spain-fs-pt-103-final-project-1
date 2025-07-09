@@ -1,33 +1,50 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/img/logo.jpeg";
 import useGlobalReducer from "../hooks/useGlobalReducer";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { LuPawPrint } from "react-icons/lu";
 
 export const Navbar = () => {
-	const { store, dispatch} = useGlobalReducer();
+	const { store, dispatch } = useGlobalReducer();
 	const navigate = useNavigate()
 	const logoAnimal = logo
-	 const handleLogout =()=>{
+	const handleLogout = () => {
 		localStorage.removeItem("token");
-		dispatch({type: "Logout"});
+		localStorage.removeItem("is_admin"); 
+		dispatch({ type: "Logout" });
 		navigate("/")
+	}
 
-	 }
-
-
+	const isLoggedIn = !!store.user || store.is_admin;
+	const userEmail = store.user?.email || (store.is_admin ? "Admin" : "Invitado");
 	return (
 		<>
-			<nav className="navbar navbar-expand navbar-light bg-ligth border  border-dark">
+			<nav className="navbar navbar-expand navbar-light bg-ligth border border-dark">
 				<div className="container">
 					<Link to="/">
 						<img src={logoAnimal} className="img-fluid rounded-circle" style={{ width: 40 }} alt="imagen" />
 					</Link>
 					<div className="collapse navbar-collapse" id="navbarNavAltMarkup">
 						<div className="navbar-nav mx-2">
-							<a className="nav-link active mx-4 p-2 fs-5 fw-semibold link-pretty" aria-current="page" href="#">Home</a>
-							<a className="nav-link active p-2 fs-5 fw-semibold link-pretty" href="#">Quiero adoptar <LuPawPrint /></a>
-							<a className="nav-link active p-2 fs-5 fw-semibold link-pretty" href="#">Quiero apadrinar <LuPawPrint /></a>
+							<Link className="no-link" to="/">
+								<span className="nav-link active mx-4 p-2 fs-5 fw-semibold link-pretty" aria-current="page" href="#">Home</span>
+							</Link>
+							<Link className="no-link" to="/adoption">
+								<span className="nav-link active p-2 fs-5 fw-semibold link-pretty" aria-current="page" href="#">Quiero adoptar <LuPawPrint /></span>
+							</Link>
+							<Link className="no-link" to="/sponsorship">
+								<span className="nav-link active p-2 fs-5 fw-semibold link-pretty" aria-current="page" href="#" >Quiero apadrinar <LuPawPrint /></span>
+							</Link>
+							{store.is_admin === true && (
+								<>
+									<Link className="no-link" to="/Admin">
+										<span className="nav-link active p-2 fs-5 fw-semibold link-pretty" aria-current="page" href="#">Gestionar Gatos <LuPawPrint /></span>
+									</Link>
+									<Link className="no-link" to="/admin-list-sponsor">
+										<span className="nav-link active p-2 fs-5 fw-semibold link-pretty" aria-current="page" href="#"> Listado de sponsor <LuPawPrint /></span>
+									</Link>
+								</>
+							)}
 						</div>
 					</div>
 					<div className="ml-auto nav-item dropdown">
@@ -45,37 +62,39 @@ export const Navbar = () => {
 						</button>
 
 						<ul className="dropdown-menu">
-							{store.user ? (
+							{isLoggedIn ? (
 								<li>
-									<span className="dropdown-item">{store.user.email}</span>
+									<Link className="no-link" to="/user-data">
+									<span className="dropdown-item">{userEmail}</span>
+									</Link>
 								</li>
 							) : (
 								<li>
-									<Link to="/login">
+									<Link className="no-link" to="/login">
 										<button className="dropdown-item">Iniciar sesión</button>
 									</Link>
 								</li>
 							)}
+
 							<li><hr className="dropdown-divider" /></li>
 
-							{store.user ? (
-								<button className="btn btn-danger dropdown-item" onClick={handleLogout}>
-									Logout
-								</button>
+							{isLoggedIn ? (
+								<li>
+									<button className="btn btn-danger dropdown-item" onClick={handleLogout}>
+										Logout
+									</button>
+								</li>
 							) : (
 								<li>
-									<Link to="/register">
+									<Link className="no-link" to="/form">
 										<button className="dropdown-item">Registrarme</button>
 									</Link>
 								</li>
 							)}
-
 						</ul>
-
-
-					</div >
-				</div >
-			</nav >
+					</div>
+				</div>
+			</nav>
 		</>
 	);
 };

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import Carousel from "./Carousel.jsx";
-const ListFoodCat = () => {
+ const ListFoodCat = () => {
 
     const [data, setData] = useState([])
 

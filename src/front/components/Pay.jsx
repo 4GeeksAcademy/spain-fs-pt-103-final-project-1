@@ -1,8 +1,8 @@
 import React, { useEffect } from "react"
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
-import { Card } from "../components/Card"
-import {CheckoutForm} from "../components/CheckoutForm"
+import { Card } from "./Card.jsx"
+import {CheckoutForm} from "./CheckoutForm.jsx"
 import { Elements,CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 
