@@ -6,7 +6,9 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { BiBody } from 'react-icons/bi';
 import { Modal } from 'react-bootstrap';
-
+import fotobackground from '../assets/img/fotobackground.jpeg';
+import { auto } from '@cloudinary/url-gen/actions/resize';
+import '../index.css'
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
@@ -15,7 +17,7 @@ export const DetailCat = () => {
     const [cat, setCat] = useState(null);
     const [cargando, setCargando] = useState(true);
     const [error, setError] = useState(null);
-    const { cat_id } = useParams(); // Obtiene el ID de la URL
+    const { cat_id } = useParams(); 
     const [mostrarPago, setMostrarPago] = useState(false);
     const token = localStorage.getItem('token');
     const [amount, setAmount] = useState(0);
@@ -89,8 +91,9 @@ export const DetailCat = () => {
 
     
     return (
-        <div className="container  d-flex py-5" style={{ paddingBottom: '200px' }}>
-            <div style={{ width: 400 }}>
+        <div style={{ backgroundImage:`url(${fotobackground})`, backgroundSize:"cover", backgroundPosition: "center" }}>
+        <div className="container d-flex py-5" >
+            <div  style={{ width: 400, }} >
                 <ImageUploader idImage={cat.image} />
             </div>
             <div className="text-start ms-4 " style={{ flex: 1 }}>
@@ -109,7 +112,10 @@ export const DetailCat = () => {
 
                 {isLoggedIn ? (
                     <>
-                        <button onClick={() => setMostrarPago(true)} className='btn btn-primary'>
+                        <button onClick={() => setMostrarPago(true)} className='btn btn-primary' onMouseDown={(e) => (e.target.style.backgroundColor = '#81D4FA ')} 
+                        onMouseUp={(e) => (e.target.style.backgroundColor = '#29B6F6 ')} 
+                        onMouseOver={(e) => (e.target.style.backgroundColor = '#039BE5')} 
+                        onMouseOut={(e) => (e.target.style.backgroundColor = '#29B6F6')} >
                             Donar
                         </button>
                         <Modal show={mostrarPago} onHide={() => setMostrarPago(false)} centered>
@@ -134,6 +140,6 @@ export const DetailCat = () => {
                 )}
             </div>
         </div>
-    
+       </div>
     );
 };

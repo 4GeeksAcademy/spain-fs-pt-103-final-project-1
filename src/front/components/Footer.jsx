@@ -37,7 +37,7 @@ export const Footer = () => {
           {/* Contenido principal del footer */}
           <div className="col-md-6 mt-md-0 mt-3 text-md-start text-center text-dark">
             <h5 className="text-uppercase">AYUDA ANIMAL JEREZ</h5>
-            <p>Here you can use rows and columns to organize your footer content.</p>
+            <p>Ellos te necesitan mas de lo que crees</p>
           </div>
 
           <div className="col-md-2 mt-5 mb-md-0 mb-3">
@@ -45,7 +45,7 @@ export const Footer = () => {
             <ul className="list-unstyled">
               <li><a href="https://github.com/alejajaja30" className="link-footer">Alejandra ·alejajaja30 <PiDog /></a></li>
               <li> <a href="https://github.com/nael-dev" className="link-footer">Nael ·nael_dev <PiCat /></a></li>
-              <li><a href="https://github.com/RCKCode" className="link-footer">"Ricardo ·RCKCode" <PiHorse /></a></li>
+              <li><a href="https://github.com/RCKCode" className="link-footer">Ricardo ·RCKCode <PiHorse /></a></li>
               <li><a href="#!"></a></li>
             </ul>
           </div>
