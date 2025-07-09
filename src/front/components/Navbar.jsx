@@ -31,15 +31,18 @@ export const Navbar = () => {
 						</div>
 					</div>
 					<div className="ml-auto nav-item dropdown">
-						{store.user ? (
-							<button className="dropdown-toggle btn btn-primary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								{store.user.email}
-							</button>
-						) : (
-							<button className="dropdown-toggle btn btn-primary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Ingresar
-							</button>
-						)}
+						<button
+							className="dropdown-toggle btn btn-primary"
+							role="button"
+							data-bs-toggle="dropdown"
+							aria-expanded="false"
+							onMouseDown={(e) => (e.target.style.backgroundColor = '#81D4FA ')}
+                                onMouseUp={(e) => (e.target.style.backgroundColor = '#29B6F6 ')}
+                                onMouseOver={(e) => (e.target.style.backgroundColor = '#039BE5')}
+                                onMouseOut={(e) => (e.target.style.backgroundColor = '#29B6F6')} 
+						>
+							{isLoggedIn ? userEmail : "Ingresar"}
+						</button>
 
 						<ul className="dropdown-menu">
 							{store.user ? (

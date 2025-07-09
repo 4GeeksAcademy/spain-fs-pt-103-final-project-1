@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaInstagram } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
-
+import fotobackground from '../assets/img/fotobackground.jpeg';
 
 export const Form = () => {
     const [name, setName] = useState('');
@@ -34,8 +34,9 @@ export const Form = () => {
         }
     };
     return (
+        <div className="p-5" style={{ backgroundImage:`url(${fotobackground})`, backgroundSize:"cover", backgroundPosition: "center" }}>
         <form onSubmit={handleSubmit}>
-            <div className="container mt-5" style={{ maxWidth: "500px" }}>
+            <div className="container" style={{ maxWidth: "500px" }}>
                 <div
                     className="p-4 border rounded-4 shadow-sm bg-white transition-hover"
                     style={{
@@ -114,5 +115,6 @@ export const Form = () => {
                 </div>
             </div>
             </form>
+            </div>
             )
 }

@@ -56,3 +56,10 @@
   background-color: #c19a6b; /* tono un poco más oscuro de canela */
   color: #fff; /* texto blanco para buen contraste */
 }
+
+.no-link {
+  text-decoration: none !important;
+}
+.img-detail-cat {
+  border-radius: 50px;
+}
