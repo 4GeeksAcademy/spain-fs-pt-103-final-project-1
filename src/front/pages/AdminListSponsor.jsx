@@ -14,8 +14,11 @@ export const AdminListSponsor = () => {
 
     const handleListSponsor = async () => {
         try {
-            const response = await fetch(
-                "https://refactored-doodle-5gr9497rp94vh754r-3001.app.github.dev/api/payment-registration-admin",
+            const backendUrl = import.meta.env.VITE_BACKEND_URL
+            if (!backendUrl) throw new Error('Backend error')
+        
+            const response = await fetch(`${backendUrl}/api/payment-registration-admin`,
+            
                 {
                     headers: {
                         'Authorization': `Bearer ${store.token}`
