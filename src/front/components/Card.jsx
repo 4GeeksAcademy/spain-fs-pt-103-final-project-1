@@ -15,7 +15,7 @@ export const Card = ({cat}) => {
                         <div className="card-body">
                             <h5 className="card-title fw-semibold">{cat.name}</h5>
                             <Link to={`/detail-cat-page/${cat.id}`} >
-                                <button className="btn btn-outline-info">Quiero saber más!</button>
+                                <button className="btn btn-info">Quiero saber más!</button>
                             </Link>
                         </div>
                 </div>

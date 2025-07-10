@@ -10,6 +10,7 @@ import ListFoodCat from "../components/ListFoodCat.jsx";
 import { identity } from "@cloudinary/url-gen/backwards/utils/legacyBaseUtil";
 import ImageUploader from "../components/ImageUploader.jsx";
 import { Link } from "react-router-dom";
+import background from "../assets/img/background.jpeg"
 
 export const Home = () => {
 
@@ -113,16 +114,16 @@ export const Home = () => {
 
 
 	return (
-		<div className="text-center mt-5 m-4">
+		<div className="text-center p-5" style={{backgroundImage: `url(${background})`, backgroundSize: "cover", backgroundPosition: "center" }}>
 			<Jumbotron />
-			<hr className="my-4" />
+			<hr className="my-4 border-3 border-dark opacity-50" />
 			<h1>Conoce nuestros gatitos!<GiPawHeart /></h1>
 			<Carousel cards={cat.map((cat) => (
 			<Card cat={cat} key={cat.id} />	
 			)
 			)}
 			/>
-			<hr className="my-4" />
+			<hr className="my-4 border-3 border-dark opacity-50" />
 			<h1>Tips para cuidar de tu minino <MdOutlineTipsAndUpdates /></h1>
 			<Carousel cards={tips.map((tip, index) => (
 				<div key={tip.title} className="card text-bg-info m-3" style={{ width: 250, height: 250 }}>
@@ -134,7 +135,7 @@ export const Home = () => {
 				</div>
 
 			))} />
-			<hr className="my-4" />
+			<hr className="my-4 border-3 border-dark opacity-50" />
 			<ListFoodCat />
 		</div>
 	);
