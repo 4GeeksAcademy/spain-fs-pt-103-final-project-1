@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useNavigate } from "react-router-dom"
+import useGlobalReducer from "../hooks/useGlobalReducer";
 
 
 export const CheckoutForm = ({ amount, setAmount, currency, setCurrency, onPaymentSuccess }) => {
@@ -10,12 +11,16 @@ export const CheckoutForm = ({ amount, setAmount, currency, setCurrency, onPayme
     const [loading, setLoading] = useState(false);
     const [paymentSuccess, setPaymentSuccess] = useState(false)
     const navigate = useNavigate()
+    const { dispatch } = useGlobalReducer();
 
     useEffect(() => {
         if (amount <= 0 || currency === "")
             return;
         const paymentIntent = async () => {
-            const res = await fetch('https://refactored-doodle-5gr9497rp94vh754r-3001.app.github.dev/api/create-checkout-session', {
+            const backendUrl = import.meta.env.VITE_BACKEND_URL
+            if (!backendUrl) throw new Error('Backend error')
+
+            const res = await fetch(`${backendUrl}/api/create-checkout-session`, {
                 method: 'POST',
                 headers: { 'Content-type': 'application/json' },
                 body: JSON.stringify({ amount: parseInt(amount) * 100, currency })
@@ -27,6 +32,7 @@ export const CheckoutForm = ({ amount, setAmount, currency, setCurrency, onPayme
         }
         paymentIntent()
     }, [amount, currency]);
+    console.log(clientSecret)
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -55,7 +61,7 @@ export const CheckoutForm = ({ amount, setAmount, currency, setCurrency, onPayme
             if (onPaymentSuccess) {
                 onPaymentSuccess();
             }
-            
+
             setTimeout(() => navigate('/'), 2000);
         } else {
             console.log('algun error')
@@ -78,7 +84,11 @@ export const CheckoutForm = ({ amount, setAmount, currency, setCurrency, onPayme
                 <label>Moneda</label>
                 <select
                     value={currency}
-                    onChange={(e) => setCurrency(e.target.value)}
+                    onChange={(e) => {
+                        const selectedCurrency = e.target.value;
+                        setCurrency(selectedCurrency);
+                        dispatch({ type: "divisa", payload: { currency: selectedCurrency } });
+                    }}
                     className="form-control"
                 >
                     <option value="usd">USD</option>

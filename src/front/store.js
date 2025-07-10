@@ -8,6 +8,7 @@ export const initialStore = () => {
     is_admin: storedIsAdmin ? JSON.parse(storedIsAdmin) : false,
     user: storedUser ? JSON.parse(storedUser) : null,
     token: storedToken || null,
+   
   };
 };
 
@@ -42,6 +43,12 @@ export default function storeReducer(store, action = {}) {
       return {
         ...store,
         token: action.payload,
+      };
+    case "divisa":
+      const { currency } = action.payload;
+      return {
+        ...store,
+        currency: currency,
       };
     default:
       throw Error("Unknown action.");
