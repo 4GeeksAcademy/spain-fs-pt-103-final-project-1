@@ -100,13 +100,15 @@ export const CheckoutForm = ({ amount, setAmount, currency, setCurrency, onPayme
             <div className="my-5">
                 <CardElement />
             </div>
+            <div className='d-flex justify-content-center'>
             <button
                 type="submit"
-                className="btn btn-success mx-auto"
+                className="btn btn-info col-3 mx-auto"
                 disabled={!stripe || loading}>
 
                 Pay
             </button>
+            </div>
             {paymentSuccess && (
                 <div className="alert alert-success mt-3" role="alert">
                     Su pago ha sido procesado. Redireccionando...

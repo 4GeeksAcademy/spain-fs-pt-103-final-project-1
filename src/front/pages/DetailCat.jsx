@@ -109,10 +109,10 @@ export const DetailCat = () => {
 
 
                 {isLoggedIn ? (
-                    <>
-                        <button 
+                    <div className='d-flex justify-content-center'>
+                        <button  
                         onClick={() => setMostrarPago(true)} 
-                        className='btn btn-info' >
+                        className='btn btn-info d-grid gap-2 col-3 mx-auto' >
                             Donar
                         </button>
                         <Modal show={mostrarPago} onHide={() => setMostrarPago(false)} centered>
@@ -131,7 +131,7 @@ export const DetailCat = () => {
                                 </Elements>
                             </Modal.Body>
                         </Modal>
-                    </>
+                    </div>
                 ) : (
                     <h3 className='text-center'><strong>Por favor inicia sesión  o registrate para donar.</strong></h3>
                 )}
