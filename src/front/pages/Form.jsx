@@ -30,8 +30,9 @@ export const Form = () => {
                 })
             });
             const result = await response.json();
-            alert('Formulario enviado correctamente');
-            if (result){
+            console.log(result)
+         
+            if (result.Ok){
                 navigate('/login');
             }
         } catch (error) {
