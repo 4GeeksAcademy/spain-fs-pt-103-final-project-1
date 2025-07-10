@@ -4,6 +4,7 @@ import { FaInstagram } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import fotobackground from '../assets/img/fotobackground.jpeg';
+import {Link} from "react-router-dom"
 
 export const Form = () => {
     const [name, setName] = useState('');
@@ -82,10 +83,11 @@ export const Form = () => {
                             <label htmlFor="gmail" className="form-label fw-semibold">Correo Gmail</label>
                             <input type="email" className="form-control" id="gmail" placeholder="Ej. Mizifú22@gmail.com" onChange={(e) => setEmail(e.target.value)} />
                         </div>
-                        <div className="d-grid">
+                        <div className="d-grid text-center">
                             <button type="submit" className="btn btn-canela">
                                 Crear Usuario
                             </button>
+                            <span className="mt-2">Ya tienes cuenta? <Link to="/login">Inicia sesion</Link></span>
                         </div>
                     <div style={{ marginTop: "1rem", textAlign: "center" }}>
                         <a

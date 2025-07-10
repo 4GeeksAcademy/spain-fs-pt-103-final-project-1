@@ -13,7 +13,7 @@ const ImageUploader = ({idImage, size=400}) => {
         .quality('auto')
         .resize(auto().gravity(autoGravity()).width(size).height(size)); 
 
-  return (<AdvancedImage className='rounded-5' cldImg={img}/>);
+  return (<AdvancedImage className={'rounded-3'} cldImg={img}/>);
 };
 
 export default ImageUploader

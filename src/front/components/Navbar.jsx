@@ -49,14 +49,11 @@ export const Navbar = () => {
 					</div>
 					<div className="ml-auto nav-item dropdown">
 						<button
-							className="dropdown-toggle btn btn-primary"
+							className="dropdown-toggle btn btn-info"
 							role="button"
 							data-bs-toggle="dropdown"
 							aria-expanded="false"
-							onMouseDown={(e) => (e.target.style.backgroundColor = '#81D4FA ')}
-                                onMouseUp={(e) => (e.target.style.backgroundColor = '#29B6F6 ')}
-                                onMouseOver={(e) => (e.target.style.backgroundColor = '#039BE5')}
-                                onMouseOut={(e) => (e.target.style.backgroundColor = '#29B6F6')} 
+		
 						>
 							{isLoggedIn ? userEmail : "Ingresar"}
 						</button>

@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import useGlobalReducer from "../hooks/useGlobalReducer";
 import fotobackground from '../assets/img/fotobackground.jpeg';
+import {Link} from "react-router-dom"
 
 
 export const Login = () => {
@@ -139,14 +140,15 @@ export const Login = () => {
                             outlineColor: '#3b82f6',
                         }}
                     />
-
+                    <div className="d-grid text-center">
                     <button
                         type="submit"
-                        className="btn btn-canela"
-                        
+                        className="btn btn-canela"   
                     >
-                        Login
+                    Login
                     </button>
+                    <span className="mt-2">No tienes cuenta? <Link to="/form">Registrate</Link></span>
+                    </div>
                 </fieldset>
             </form>
         </section>

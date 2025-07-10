@@ -93,29 +93,26 @@ export const DetailCat = () => {
     return (
         <div style={{ backgroundImage:`url(${fotobackground})`, backgroundSize:"cover", backgroundPosition: "center" }}>
         <div className="container d-flex py-5" >
-            <div  style={{ width: 400, }} >
-                <ImageUploader idImage={cat.image} />
-            </div>
             <div className="text-start ms-4 " style={{ flex: 1 }}>
                 <h1 className='fw-bolder'>{cat.name}</h1>
                 <hr className="my-4" />
-                <p className="text-justify text fw-semibold">{cat.history}</p>
+                <h5 className="text-justify text fw-semibold">{cat.history}</h5>
                 <hr className="my-4" />
-                <p className="text-justify text fw-semibold card-title">Edad : {cat.age}</p>
+                <h5 className="text-justify text fw-semibold card-title">Edad : {cat.age}</h5>
                 <hr className="my-4" />
-                <p className="text-justify text fw-semibold card-title">Raza : {cat.race}</p>
+                <h5 className="text-justify text fw-semibold card-title">Raza : {cat.race}</h5>
                 <hr className="my-4" />
-                <p className="text-justify text fw-semibold card-title">Castración : {cat.castration ? 'SI': 'NO'}</p>
+                <h5 className="text-justify text fw-semibold card-title">Castración : {cat.castration ? 'SI': 'NO'}</h5>
                 <hr className="my-4" />
-                <p className="text-justify text fw-semibold card-title">Carácter : {cat.character}</p>
+                <h5 className="text-justify text fw-semibold card-title">Carácter : {cat.character}</h5>
                 <hr className="my-4" />
+
 
                 {isLoggedIn ? (
                     <>
-                        <button onClick={() => setMostrarPago(true)} className='btn btn-primary' onMouseDown={(e) => (e.target.style.backgroundColor = '#81D4FA ')} 
-                        onMouseUp={(e) => (e.target.style.backgroundColor = '#29B6F6 ')} 
-                        onMouseOver={(e) => (e.target.style.backgroundColor = '#039BE5')} 
-                        onMouseOut={(e) => (e.target.style.backgroundColor = '#29B6F6')} >
+                        <button 
+                        onClick={() => setMostrarPago(true)} 
+                        className='btn btn-info' >
                             Donar
                         </button>
                         <Modal show={mostrarPago} onHide={() => setMostrarPago(false)} centered>
@@ -138,6 +135,9 @@ export const DetailCat = () => {
                 ) : (
                     <p>Por favor inicia sesión para donar.</p>
                 )}
+            </div>
+             <div className='mt-5 px-5 ' style={{ width: 400, }} >
+                <ImageUploader  idImage={cat.image} />
             </div>
         </div>
        </div>

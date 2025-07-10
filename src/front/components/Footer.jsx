@@ -6,22 +6,21 @@ import { PiHorse } from "react-icons/pi";
 import { PiGithubLogoFill } from "react-icons/pi";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa6";
+import footer from "../assets/img/footer.png"
 
 export const Footer = () => {
   return (
     <footer style={{
-      backgroundColor: '#E2E2E2',
-      backgroundImage: 'url("https://i.pinimg.com/236x/b8/34/d1/b834d123cfec97f526584603d52787e6.jpg")',
+      backgroundColor: 'white',
+      backgroundImage: `url(${footer})`,
       backgroundSize: 'contain',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
-      color: '#fff',
-      padding: '5px'
+      color: 'white'
     }}>
       <div className="container-fluid text-center text-md-left">
         <div className="row align-items-center justify-content-center">
-          {/* Imagen en el lado izquierdo */}
-          <div className="col-md-1 d-flex justify-content-center mb-3 mb-md-0">
+          <div className="col-md-1 d-flex justify-content-center ">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREOFYUFQxyIQRExOKYBo_MP0grjqgZo0ZGVA&s"
               alt="Perfil"
@@ -34,13 +33,11 @@ export const Footer = () => {
             />
           </div>
 
-          {/* Contenido principal del footer */}
-          <div className="col-md-6 mt-md-0 mt-3 text-md-start text-center text-dark">
+          <div className="col-md-6 text-md-start text-center text-dark">
             <h5 className="text-uppercase">AYUDA ANIMAL JEREZ</h5>
             <p>Ellos te necesitan mas de lo que crees</p>
           </div>
-
-          <div className="col-md-2 mt-5 mb-md-0 mb-3">
+          <div className="col-md-2 mt-2 ">
             <h5 className="text-dark fw-bold"> GitHub <PiGithubLogoFill/></h5>
             <ul className="list-unstyled">
               <li><a href="https://github.com/alejajaja30" className="link-footer">Alejandra ·alejajaja30 <PiDog /></a></li>
@@ -50,19 +47,17 @@ export const Footer = () => {
             </ul>
           </div>
 
-          <div className="col-md-2 mb-md-0 mb-3">
+          <div className="col-md-2 ">
             <h5 className="text-dark text-uppercase fw-bold text-dark">SIGUENOS</h5>
             <ul className="list-unstyled">
-              <li><a href="#!" className="link-footer"><FaInstagram /> InstagramProtectora</a></li>
-              <li><a href="#!" className="link-footer"><FaFacebook /> FacebookProtectora</a></li>
+              <li><a href="https://www.instagram.com/ayudaanimal.jerez/" className="link-footer"><FaInstagram /> InstagramProtectora</a></li>
+              <li><a href="https://www.instagram.com/ayudaanimal.jerez/" className="link-footer"><FaFacebook /> FacebookProtectora</a></li>
             </ul>
           </div>
-
-        </div>
-      </div>
-
-      <div className="text-center py-3 mt-4 text-dark" style={{ borderTop: "1px solid #ddd" }}>
+              <div className="text-center text-dark" style={{ borderTop: "1px solid #ddd" }}>
         © 2025 Proyecto de — <a href="https://4geeks.com/es">4GeeksAcademy</a>
+      </div>
+        </div>
       </div>
     </footer>
   )

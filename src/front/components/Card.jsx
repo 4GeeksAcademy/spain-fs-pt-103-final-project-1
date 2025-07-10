@@ -10,9 +10,9 @@ export const Card = ({cat}) => {
     return (
         <div>
             <div className="col">
-                <div className="card rounded-top-5 border border-info" style={{ width: 200 }}>
+                <div className="card rounded-top-3 border border-info" style={{ width: 202 }}>
                     <div className="card-img-top" ><ImageUploader idImage={cat.image} size={200}/> </div>
-                        <div className="card-body">
+                        <div className="card-body text-center ">
                             <h5 className="card-title fw-semibold">{cat.name}</h5>
                             <Link to={`/detail-cat-page/${cat.id}`} >
                                 <button className="btn btn-info">Quiero saber más!</button>

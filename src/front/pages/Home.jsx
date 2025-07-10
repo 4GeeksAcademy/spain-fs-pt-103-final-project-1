@@ -10,7 +10,7 @@ import ListFoodCat from "../components/ListFoodCat.jsx";
 import { identity } from "@cloudinary/url-gen/backwards/utils/legacyBaseUtil";
 import ImageUploader from "../components/ImageUploader.jsx";
 import { Link } from "react-router-dom";
-import background from "../assets/img/background.jpeg"
+import fotobackground from "../assets/img/fotobackground.jpeg"
 
 export const Home = () => {
 
@@ -114,7 +114,7 @@ export const Home = () => {
 
 
 	return (
-		<div className="text-center p-5" style={{backgroundImage: `url(${background})`, backgroundSize: "cover", backgroundPosition: "center" }}>
+		<div className="text-center p-5" style={{backgroundImage: `url(${fotobackground})`, backgroundSize: "cover", backgroundPosition: "center" }}>
 			<Jumbotron />
 			<hr className="my-4 border-3 border-dark opacity-50" />
 			<h1>Conoce nuestros gatitos!<GiPawHeart /></h1>
