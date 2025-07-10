@@ -18,18 +18,18 @@ import Carousel from "./Carousel.jsx";
 
         ListProduct();
     }, []);
-   
+
     const cards = data.map((item, index) => (
         <div
             className="card m-3 h-100 d-flex flex-column justify-content-between"
             style={{ width: "16rem", minHeight: "450px"  }}
             key={index}
         >
-            <img 
-                src={item.imagen} 
+            <img
+                src={item.imagen}
                 className="card-img-top"
                 alt={item.nombre}
-                style={{ objectFit: "cover", height: "200px" }}/>
+                style={{ objectFit: "cover", height: "200px" }} />
             <div className="card-body d-flex flex-column">
                 <h5 className="card-title">{item.nombre}</h5>
                 <p className="card-text">{item.precio}</p>
@@ -37,12 +37,12 @@ import Carousel from "./Carousel.jsx";
             </div>
         </div>
     ));
-    return(
-    <div>
-        <h1>Piensos para tu gato</h1>
-        <Carousel cards={cards} />
-    </div>
-   );
+    return (
+        <div>
+            <h1>Piensos para tu gato</h1>
+            <Carousel cards={cards} />
+        </div>
+    );
 };
 
 export default ListFoodCat;

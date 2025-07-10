@@ -2,6 +2,7 @@ import Carousel from "../components/Carousel.jsx"
 import { Card } from "../components/Card.jsx";
 import { useEffect, useState } from "react";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+import fotobackground from '../assets/img/fotobackground.jpeg';
 
 
 export const Adoption = () => {
@@ -38,7 +39,8 @@ export const Adoption = () => {
         handleGetCat();
     }, [])
     return (
-        <div className="content m-4">
+        <div className="p-3" style={{ backgroundImage:`url(${fotobackground})`, backgroundSize:"cover", backgroundPosition: "center" }}>
+        <div className="content">
             <h1 className="text-center m-3">Quieres adoptar?</h1>
             <div className="text-center m-3" >
                 <div className="card border-info mb-3 m-auto" style={{ width: 800 }}>
@@ -52,6 +54,7 @@ export const Adoption = () => {
             )
             )}
             />
+        </div>
         </div>
     )
 }

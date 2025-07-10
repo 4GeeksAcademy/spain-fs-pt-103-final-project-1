@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { FaInstagram, FaWhatsapp, FaFacebook } from 'react-icons/fa';
 import useGlobalReducer from '../hooks/useGlobalReducer';
-   import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import fotobackground from '../assets/img/fotobackground.jpeg';
 
 export const Admin = () => {
     const [name, setName] = useState('');
@@ -39,8 +40,9 @@ export const Admin = () => {
         }
     };
     return (
+        <div className="p-5" style={{ backgroundImage:`url(${fotobackground})`, backgroundSize:"cover", backgroundPosition: "center" }}>
         <form onSubmit={handleSubmit}>
-            <div className="container mt-5" style={{ maxWidth: "500px" }}>
+            <div className="container mt-5 mb-5" style={{ maxWidth: "500px" }}>
                 <div
                     className="p-4 border rounded-4 shadow-sm bg-white transition-hover"
                     style={{
@@ -130,5 +132,6 @@ export const Admin = () => {
                 </div>
             </div>
         </form>
+    </div>
     )
 }
