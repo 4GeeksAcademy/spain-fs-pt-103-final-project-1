@@ -136,7 +136,7 @@ export const DetailCat = () => {
                         </Modal>
                     </>
                 ) : (
-                    <p>Por favor inicia sesión para donar.</p>
+                    <h3 className='text-center'><strong>Por favor inicia sesión  o registrate para donar.</strong></h3>
                 )}
             </div>
         </div>
