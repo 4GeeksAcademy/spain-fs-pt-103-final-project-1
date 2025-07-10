@@ -26,7 +26,6 @@ export const UserData = () => {
             console.error("Error fetching payments:", error);
         }
     };
-    console.log(payments)
     useEffect(() => {
         if (store.user) {
             handleListSponsor();
@@ -49,7 +48,7 @@ export const UserData = () => {
                         {payments.map((item, index) => (
                             <div key={index} className="mb-3 border-bottom pb-2">
                                 <h5 className="card-title">Nombre del gato: {item.sponsor.cat_name}</h5>
-                                <p className="card-text">Cantidad: ${item.amount}</p>
+                                <p className="card-text">Cantidad: {item.amount}</p>
                                 <p className="card-text"><strong>Fecha de Registro:</strong> {new Date(item.date_payment).toLocaleString('es-ES', {
                                     day: 'numeric',
                                     month: 'long',
