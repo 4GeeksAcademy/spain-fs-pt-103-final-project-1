@@ -1,6 +1,7 @@
 import Carousel from "../components/Carousel.jsx"
 import { Card } from "../components/Card.jsx";
 import { useEffect, useState } from "react";
+import fotobackground from '../assets/img/fotobackground.jpeg';
 
 export const Sponsorship = () => {
     const [cat, setCat] = useState([]);
@@ -35,10 +36,14 @@ export const Sponsorship = () => {
         handleGetCat();
     }, [])
     return (
-        <div className="content m-4">
-            <h1 className="text-center m-3">Quieres apadrinar?</h1>
+        <div style={{ backgroundImage: `url(${fotobackground})`, backgroundSize: "cover", backgroundPosition: "center" }}>
+            <h1 className="text-center m-3 display-4 fw-semibold"
+                        style={{
+                            fontFamily: "'Playfair Display', serif",
+                            color: '#3B2F2F'
+                        }}>Quieres apadrinar?</h1>
             <div className="text-center m-3" >
-                <div className="card border-info mb-3 m-auto" style={{ width: 800 }}>
+                <div className="card border-info mb-3 m-auto p-5" style={{ width: 800 }}>
                     <div className="card-body">
                         <h5 className="card-title">Si estás interesado en apadrinar, pulsa en el botón de "Quiero saber más"  </h5>
                     </div>

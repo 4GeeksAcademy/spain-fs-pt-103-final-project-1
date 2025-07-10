@@ -10,6 +10,7 @@ import ListFoodCat from "../components/ListFoodCat.jsx";
 import { identity } from "@cloudinary/url-gen/backwards/utils/legacyBaseUtil";
 import ImageUploader from "../components/ImageUploader.jsx";
 import { Link } from "react-router-dom";
+import fotobackground from '../assets/img/fotobackground.jpeg';
 
 export const Home = () => {
 
@@ -17,31 +18,31 @@ export const Home = () => {
 
 	const { store, dispatch } = useGlobalReducer()
 	useEffect(() => {
-	const token = localStorage.getItem("token");
-	if (!token || store.user) return;
+		const token = localStorage.getItem("token");
+		if (!token || store.user) return;
 
-	const fetchUser = async () => {
-		try {
-			const backendUrl = import.meta.env.VITE_BACKEND_URL;
-			const res = await fetch(`${backendUrl}/api/user/user-data`, {
-				headers: {
-					"Authorization": `Bearer ${token}`
-				}
-			});
-			if (!res.ok) throw new Error("No se pudo recuperar el usuario");
+		const fetchUser = async () => {
+			try {
+				const backendUrl = import.meta.env.VITE_BACKEND_URL;
+				const res = await fetch(`${backendUrl}/api/user/user-data`, {
+					headers: {
+						"Authorization": `Bearer ${token}`
+					}
+				});
+				if (!res.ok) throw new Error("No se pudo recuperar el usuario");
 
-			const data = await res.json();
-			dispatch({ type: "set_user", payload: { user: data.user, token } });
-			localStorage.setItem("user", JSON.stringify(data.user));
-		} catch (err) {
-			console.error("Error al recuperar el usuario:", err);
-			localStorage.removeItem("token");
-			localStorage.removeItem("user");
-		}
-	};
+				const data = await res.json();
+				dispatch({ type: "set_user", payload: { user: data.user, token } });
+				localStorage.setItem("user", JSON.stringify(data.user));
+			} catch (err) {
+				console.error("Error al recuperar el usuario:", err);
+				localStorage.removeItem("token");
+				localStorage.removeItem("user");
+			}
+		};
 
-	fetchUser();
-}, []);
+		fetchUser();
+	}, []);
 
 	useEffect(() => {
 
@@ -113,29 +114,41 @@ export const Home = () => {
 
 
 	return (
-		<div className="text-center mt-5 m-4">
-			<Jumbotron />
-			<hr className="my-4" />
-			<h1>Conoce nuestros gatitos!<GiPawHeart /></h1>
-			<Carousel cards={cat.map((cat) => (
-			<Card cat={cat} key={cat.id} />	
-			)
-			)}
-			/>
-			<hr className="my-4" />
-			<h1>Tips para cuidar de tu minino <MdOutlineTipsAndUpdates /></h1>
-			<Carousel cards={tips.map((tip, index) => (
-				<div key={tip.title} className="card text-bg-info m-3" style={{ width: 250, height: 250 }}>
-					<div className="card-header">{`Tip #${index}`}</div>
-					<div className="card-body">
-						<h5 className="card-title">{tip.title}</h5>
-						<p className="card-text">{tip.content}</p>
+		<div style={{ backgroundImage: `url(${fotobackground})`, backgroundSize: "cover", backgroundPosition: "center" }}>
+			<div className="text-center mt-2 m-4">
+				<Jumbotron />
+				<hr className="my-4" />
+				<h1 className="display-4 fw-semibold"
+                        style={{
+                            fontFamily: "'Playfair Display', serif",
+                            color: '#3B2F2F'
+                        }}>Conoce nuestros gatitos!<GiPawHeart /></h1>
+				<Carousel cards={cat.map((cat) => (
+					<Card cat={cat} key={cat.id} />
+				)
+				)}
+				/>
+				<hr className="my-5" />
+				<h1 className="display-4 fw-semibold"
+                        style={{
+                            fontFamily: "'Playfair Display', serif",
+                            color: '#3B2F2F'
+                        }}>Tips para cuidar de tu minino <MdOutlineTipsAndUpdates /></h1>
+				<Carousel cards={tips.map((tip, index) => (
+					<div className="card m-3"
+						style={{ width: 300, height: 250, backgroundColor: '#F5E0C2', color: '#5A3E36' }}>
+						<div className="card-header m-2">{`Tip #${index}`}</div>
+						<div className="card-body">
+							<h5 className="card-title">{tip.title}</h5>
+							<p className="card-text">{tip.content}</p>
+						</div>
 					</div>
-				</div>
 
-			))} />
-			<hr className="my-4" />
-			<ListFoodCat />
+
+				))} />
+				<hr className="my-4" />
+				<ListFoodCat />
+			</div>
 		</div>
 	);
 }; 

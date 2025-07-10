@@ -37,7 +37,7 @@ export const Footer = () => {
           {/* Contenido principal del footer */}
           <div className="col-md-6 mt-md-0 mt-3 text-md-start text-center text-dark">
             <h5 className="text-uppercase">AYUDA ANIMAL JEREZ</h5>
-            <p>Ellos te necesitan mas de lo que crees</p>
+            <p>Ellos te necesitan!!🐈‍⬛</p>
           </div>
 
           <div className="col-md-2 mt-5 mb-md-0 mb-3">

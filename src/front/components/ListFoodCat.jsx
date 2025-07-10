@@ -27,7 +27,7 @@ import Carousel from "./Carousel.jsx";
         >
             <img
                 src={item.imagen}
-                className="card-img-top"
+                className="card-img-top pt-3"
                 alt={item.nombre}
                 style={{ objectFit: "cover", height: "200px" }} />
             <div className="card-body d-flex flex-column">
@@ -43,7 +43,11 @@ import Carousel from "./Carousel.jsx";
     ));
     return (
         <div>
-            <h1>Piensos para tu gato</h1>
+            <h1 className="display-4 fw-semibold"
+                        style={{
+                            fontFamily: "'Playfair Display', serif",
+                            color: '#3B2F2F'
+                        }}>Piensos para tu gato</h1>
             <Carousel cards={cards} />
         </div>
     );

@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import fotobackground from '../assets/img/fotobackground.jpeg';
 
-
 export const Adoption = () => {
     const [cat, setCat] = useState([]);
 
@@ -39,11 +38,15 @@ export const Adoption = () => {
         handleGetCat();
     }, [])
     return (
-        <div className="p-3" style={{ backgroundImage:`url(${fotobackground})`, backgroundSize:"cover", backgroundPosition: "center" }}>
+        <div style={{ backgroundImage: `url(${fotobackground})`, backgroundSize: "cover", backgroundPosition: "center" }}>
         <div className="content">
-            <h1 className="text-center m-3">Quieres adoptar?</h1>
+            <h1 className="text-center m-3 display-4 fw-semibold"
+                        style={{
+                            fontFamily: "'Playfair Display', serif",
+                            color: '#3B2F2F'
+                        }} >¿Quieres adoptar?</h1>
             <div className="text-center m-3" >
-                <div className="card border-info mb-3 m-auto" style={{ width: 800 }}>
+                <div className="card border-info mb-3 m-auto" style={{ width: 600 }}>
                     <div className="card-body">
                         <h5 className="card-title">Si estás interesado en adoptar, envíanos un correo con tu nombre, e-mail y número de teléfono y nos comunicaremos contigo lo más pronto posible.<br></br> Nuestro correo: <br></br> <strong>ayudaanimaljerez@gmail.com</strong> </h5>
                     </div>
