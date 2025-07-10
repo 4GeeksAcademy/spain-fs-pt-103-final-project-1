@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import useGlobalReducer from "../hooks/useGlobalReducer";
+import fotobackground from '../assets/img/fotobackground.jpeg';
+
 
 export const AdminListSponsor = () => {
     const [sponsor, setSponsor] = useState([]);
@@ -40,14 +42,15 @@ export const AdminListSponsor = () => {
   console.log(store.currency)
     
 return (
+    <div className="p-5" style={{ backgroundImage:`url(${fotobackground})`, backgroundSize:"cover", backgroundPosition: "center" }}>
         <div className="container mt-5 mb-5">
             <h1 className="text-center mb-4">Lista de Patrocinadores</h1>
             <div className="card shadow-sm">
                 <div className="card-body">
-                    <h4 className="card-text">Listado de Gatos con sponsors.</h4>
+                
                     {sponsor.map((item, index) => (
                         <div key={index} className="mb-3 border-bottom pb-2">
-                            <h5 className="card-title">Nombre del gato: {item.sponsor.cat_name}</h5>
+                            <h5 className="card-title">Nombre del gato: <strong>{item.sponsor.cat_name}</strong></h5>
                             <p className="card-text"><strong>Email de usuario:</strong> {item.sponsor.user_email}</p>
                             <p className="card-text"><strong>Cantidad:</strong> {item.amount}{store.currency}</p>
                             <p className="card-text"><strong>Fecha de Registro:</strong>{new Date(item.date_payment).toLocaleString('es-ES', {
@@ -62,5 +65,6 @@ return (
                 </div>
             </div>
         </div>
+    </div>
     );
 }
