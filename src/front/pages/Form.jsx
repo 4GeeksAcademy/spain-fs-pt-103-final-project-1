@@ -4,6 +4,7 @@ import { FaInstagram } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import fotobackground from '../assets/img/fotobackground.jpeg';
+import { GiConsoleController } from "react-icons/gi";
 
 export const Form = () => {
     const [name, setName] = useState('');
@@ -29,8 +30,9 @@ export const Form = () => {
                 })
             });
             const result = await response.json();
-            alert('Formulario enviado correctamente');
-            if (result.ok){
+            console.log(result)
+         
+            if (result.Ok){
                 navigate('/login');
             }
         } catch (error) {
