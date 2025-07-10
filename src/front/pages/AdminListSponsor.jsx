@@ -37,6 +37,7 @@ export const AdminListSponsor = () => {
       if (!store.token) {
     return <p>Cargando token, por favor espera...</p>;
   }
+  console.log(store.currency)
     
 return (
         <div className="container mt-5 mb-5">
@@ -48,7 +49,7 @@ return (
                         <div key={index} className="mb-3 border-bottom pb-2">
                             <h5 className="card-title">Nombre del gato: {item.sponsor.cat_name}</h5>
                             <p className="card-text"><strong>Email de usuario:</strong> {item.sponsor.user_email}</p>
-                            <p className="card-text"><strong>Cantidad:</strong> ${item.amount}</p>
+                            <p className="card-text"><strong>Cantidad:</strong> {item.amount}{store.currency}</p>
                             <p className="card-text"><strong>Fecha de Registro:</strong>{new Date(item.date_payment).toLocaleString('es-ES', {
                                 day: 'numeric',
                                 month: 'long',
