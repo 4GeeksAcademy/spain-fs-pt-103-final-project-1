@@ -21,8 +21,8 @@ import Carousel from "./Carousel.jsx";
 
     const cards = data.map((item, index) => (
         <div
-            className="card m-5 h-100 d-flex flex-column justify-content-between"
-            style={{ width: "18rem", minHeight: "450px" }}
+            className="card m-3 h-100 d-flex flex-column justify-content-between"
+            style={{ width: "16rem", minHeight: "450px"  }}
             key={index}
         >
             <img
@@ -33,11 +33,7 @@ import Carousel from "./Carousel.jsx";
             <div className="card-body d-flex flex-column">
                 <h5 className="card-title">{item.nombre}</h5>
                 <p className="card-text">{item.precio}</p>
-                <a href={item.url} className="btn-info btn mt-auto w-100" target="_blank" rel="noopener noreferrer" onMouseDown={(e) => (e.target.style.backgroundColor = '#81D4FA ')}
-                    onMouseUp={(e) => (e.target.style.backgroundColor = '#29B6F6 ')}
-                    onMouseOver={(e) => (e.target.style.backgroundColor = '#039BE5')}
-                    onMouseOut={(e) => (e.target.style.backgroundColor = '#29B6F6')}
-                >Comprar</a>
+                <a href={item.url} className="btn btn-info mt-auto w-100" target="_blank" rel="noopener noreferrer">Comprar</a>
             </div>
         </div>
     ));

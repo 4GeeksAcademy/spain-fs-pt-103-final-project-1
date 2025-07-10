@@ -39,21 +39,23 @@ export const Adoption = () => {
         handleGetCat();
     }, [])
     return (
-        <div className="p-3" style={{ backgroundImage:`url(${fotobackground})`, backgroundSize:"cover", backgroundPosition: "center" }}>
+        <div className="p-4" style={{ backgroundImage:`url(${fotobackground})`, backgroundSize:"cover", backgroundPosition: "center", height: 680 }}>
         <div className="content">
-            <h1 className="text-center m-3">Quieres adoptar?</h1>
-            <div className="text-center m-3" >
+            <h1 className="text-center p-2">Quieres adoptar?</h1>
+            <div className="text-center p-2" >
                 <div className="card border-info mb-3 m-auto" style={{ width: 800 }}>
                     <div className="card-body">
                         <h5 className="card-title">Si estás interesado en adoptar, envíanos un correo con tu nombre, e-mail y número de teléfono y nos comunicaremos contigo lo más pronto posible.<br></br> Nuestro correo: <br></br> <strong>ayudaanimaljerez@gmail.com</strong> </h5>
                     </div>
                 </div>
             </div>
+            <div className="p-5">
             <Carousel cards={cat.map((cat) => (
                 <Card cat={cat} key={cat.id} />
             )
             )}
             />
+            </div>
         </div>
         </div>
     )

@@ -14,8 +14,8 @@ const Carousel = ({ cards }) => {
       pagination={{ clickable: true }}
       breakpoints={{
         0: { slidesPerView: 1 },
-        768: { slidesPerView: 3 },
-        1024: { slidesPerView: 4 },
+        800: { slidesPerView: 4 },
+        1024: { slidesPerView: 5 },
       }}
     >
       {cards.map((card, index) => (
