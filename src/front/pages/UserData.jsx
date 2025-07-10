@@ -35,7 +35,7 @@ export const UserData = () => {
 
     return (
         <div className="p-5" style={{ backgroundImage:`url(${fotobackground})`, backgroundSize:"cover", backgroundPosition: "center", height:680 }}>
-            <div className="container">
+            <div className="container p-3">
                 <div className="card shadow-sm">
                     <div className="card-body">
                         <h1 className="card-text d-flex justify-content-center">Listado de gatos a los que has donado.</h1>
