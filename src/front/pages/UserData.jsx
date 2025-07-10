@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useGlobalReducer from "../hooks/useGlobalReducer";
+import fotobackground from '../assets/img/fotobackground.jpeg';
 
 export const UserData = () => {
     const { store } = useGlobalReducer();
@@ -33,8 +34,8 @@ export const UserData = () => {
     }, [store.user]);
 
     return (
-        <>
-            <div className="container mt-5">
+        <div className="p-5" style={{ backgroundImage:`url(${fotobackground})`, backgroundSize:"cover", backgroundPosition: "center", height:680 }}>
+            <div className="container">
                 <div className="card shadow-sm">
                     <div className="card-body">
                         <h1 className="card-text d-flex justify-content-center">Listado de gatos a los que has donado.</h1>
@@ -61,7 +62,7 @@ export const UserData = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div >
     );
 };
 
