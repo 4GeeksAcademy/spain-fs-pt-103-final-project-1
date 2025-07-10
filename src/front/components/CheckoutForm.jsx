@@ -15,7 +15,10 @@ export const CheckoutForm = ({ amount, setAmount, currency, setCurrency, onPayme
         if (amount <= 0 || currency === "")
             return;
         const paymentIntent = async () => {
-            const res = await fetch('https://refactored-doodle-5gr9497rp94vh754r-3001.app.github.dev/api/create-checkout-session', {
+            const backendUrl = import.meta.env.VITE_BACKEND_URL
+            if (!backendUrl) throw new Error('Backend error')
+           
+            const res = await fetch(`${backendUrl}/api/create-checkout-session`, {
                 method: 'POST',
                 headers: { 'Content-type': 'application/json' },
                 body: JSON.stringify({ amount: parseInt(amount) * 100, currency })
@@ -27,6 +30,7 @@ export const CheckoutForm = ({ amount, setAmount, currency, setCurrency, onPayme
         }
         paymentIntent()
     }, [amount, currency]);
+    console.log(clientSecret)
 
     const handleSubmit = async (event) => {
         event.preventDefault();
